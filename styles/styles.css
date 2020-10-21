@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+:root {
+  --color-text1: #000000;
+  --color-text2: #111111;
+  --color-red1: #FBDFDB;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color-text2);
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-text2);
+}
+
+#page-home {
+  width: 100%;
+  max-width: 940px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+header {
+  height: 93px;
+  display: flex;
+  align-items: center;
+}
+
+header .logo {
+  margin-right: 122px;
+}
+
+header nav a {
+  margin-right: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text2);
+}
+
+header nav a:hover {
+  font-weight: 500;
+}
+
+header nav a:last-child {
+  margin-right: 0;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 366px;
+  margin-bottom: 50px;
+  padding: 60px;
+  border-radius: 30px;
+  background-color: var(--color-red1);
+  background-image: url('../assets/chef.png');
+  background-repeat: no-repeat;
+  background-position: bottom right 100px;
+}
+
+.banner p {
+  max-width: 320px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 28px;
+  color: var(--color-text1);
+}
+
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.recipe img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 15px;
+}
