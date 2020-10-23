@@ -4,6 +4,10 @@
   --color-text1: #000000;
   --color-text2: #111111;
   --color-red1: #FBDFDB;
+  --color-background: #FDFDFF;
+  --color-author: #777777;
+  --color-footer: #999999;
+  --color-background-footer: #EEEEEE;
 }
 
 * {
@@ -11,6 +15,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
 }
 
 a {
@@ -31,6 +39,13 @@ h2 {
   color: var(--color-text2);
 }
 
+h3 {
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text2);
+}
+
 #page-home {
   width: 100%;
   max-width: 940px;
@@ -38,13 +53,16 @@ h2 {
   margin: 0 auto;
 }
 
-header {
-  height: 93px;
+header nav {
   display: flex;
   align-items: center;
+  width: 100%;
+  max-width: 940px;
+  height: 93px;
+  margin: 0 auto;
 }
 
-header .logo {
+header nav .logo {
   margin-right: 122px;
 }
 
@@ -88,12 +106,31 @@ header nav a:last-child {
 .recipes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  row-gap: 30px;
+  column-gap: 20px;
+  margin-bottom: 50px;
 }
 
 .recipe img {
   width: 100%;
   height: 140px;
   object-fit: cover;
+  margin-bottom: 20px;
   border-radius: 15px;
+}
+
+.recipe span {
+  font-size: 14px;
+  color: var(--color-author);
+}
+
+footer {
+  padding: 23px 0;
+  text-align: center;
+  background-color: var(--color-background-footer);
+}
+
+footer p {
+  font-size: 14px;
+  color: var(--color-footer);
 }
