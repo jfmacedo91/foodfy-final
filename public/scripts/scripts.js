@@ -1,23 +1,22 @@
-const modal = document.querySelector('#modal-overlay')
 const recipes = document.querySelectorAll('.recipe')
+const informations = document.querySelectorAll('.information')
+console.log(informations)
 
-for(const recipe of recipes) {
-  recipe.addEventListener('click', () => {
-    modal.classList.add('active')
-    modal.querySelector('img').src = recipe.querySelector('img').src
-    modal.querySelector('img').alt = recipe.querySelector('img').alt
-    modal.querySelector('p').innerHTML = recipe.querySelector('p').innerHTML
-    modal.querySelector('span').innerHTML = recipe.querySelector('span').innerHTML
+for(let i = 0; i < recipes.length; i++) {
+  recipes[i].addEventListener('click', () => {
+    window.location.href = `/recipes/${i}`
+    console.log(i)
   })
 }
 
-document.querySelector('.close-modal')
-  .addEventListener('click', () => {
-    modal.classList.remove('active')
-    setTimeout(() => {
-      modal.querySelector('img').src = ''
-      modal.querySelector('img').alt = ''
-      modal.querySelector('p').innerHTML = ''
-      modal.querySelector('span').innerHTML = ''
-    }, 400)
+for(const information of informations) {
+  const hideShowButton = information.querySelector('.hideShow')
+  hideShowButton.addEventListener('click', () => {
+    information.classList.toggle('show')
+    if(hideShowButton.innerHTML == 'Mostrar') {
+      hideShowButton.innerHTML = 'Esconder'
+    } else {
+      hideShowButton.innerHTML = 'Mostrar'
+    }
   })
+}

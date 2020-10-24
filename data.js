@@ -131,5 +131,32 @@ module.exports = [
       'açúcar de confeiteiro e corte em quadrados.'
     ],
     information: ''
+  },
+  {
+    image: 'https://img.itdg.com.br/tdg/images/recipes/000/001/071/38633/38633_original.jpg?mode=crop&width=710&height=400',
+    title: 'Pavê Sonho de Valsa',
+    author: 'Giovana Gonçalves Colletes',
+    ingredients: [
+      '2 pacotes de 200g de biscoito maisena passados no leite morno',
+      '12 bombons sonho de valsa',
+      '1 lata de leite condensado',
+      'A mesma medida da lata de leite de vaca (1 ou 2 medidas)',
+      '3 gemas',
+      '1 colher (sopa) de amido de milho',
+      '1/2 litro de leite',
+      '5 colheres (sopa) de chocolate em pó',
+      '4 colheres (sopa) de açucar',
+      '2 colheres (sopa) de amido de milho',
+      '1 lata de creme de leite sem soro',
+      '3 claras em neve',
+      '6 colheres (sopa) de açúcar'
+    ],
+    preparation: [
+      'Levar ao fogo e cozinhar até engrossar.',
+      'Bater as claras em neve e juntar o creme de leite.',
+      'Montar em um pirex, alternar camadas dos cremes com biscoito e bombons picados.',
+      'Cobrir com o creme de leite batido com as claras. Levar à geladeira por 4 horas.'
+    ],
+    information: ''
   }
 ];
