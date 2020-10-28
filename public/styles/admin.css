@@ -19,7 +19,11 @@ h2 {
   margin-bottom: 30px;
 }
 
-#admin-recipes .recipes {
+ul {
+  list-style-type: "- ";
+}
+
+.recipes {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -57,24 +61,26 @@ h2 {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-spotlight);
+  cursor: pointer;
 }
 
 /* Form */
-form .header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
 }
-form .header h2 {
+
+.header h2 {
   margin-bottom: 0;
 }
 
-form .header .actions {
+.header .actions {
   display: flex;
 }
 
-form .header .actions input[type="submit"] {
+.header input[type="submit"] {
   padding: 9px 20px;
   font-size: 16px;
   font-weight: 500;
@@ -84,7 +90,7 @@ form .header .actions input[type="submit"] {
   cursor: pointer;
 }
 
-form .header .actions .save {
+.header .save {
   background-color: var(--color-spotlight);
 }
 

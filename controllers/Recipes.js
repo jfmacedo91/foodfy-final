@@ -6,7 +6,12 @@ exports.index = (req, res) => {
 exports.create = (req, res) => {
   return res.render('admin/create')
 }
-exports.show = {}
+exports.show = (req, res) => {
+  const id = req.params.id;
+  const recipe = data.recipes[id]
+
+  res.render('admin/show', { recipe })
+}
 exports.edit = {}
 exports.port = {}
 exports.put = {}
