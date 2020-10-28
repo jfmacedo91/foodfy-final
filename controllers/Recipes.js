@@ -12,7 +12,12 @@ exports.show = (req, res) => {
 
   res.render('admin/show', { recipe })
 }
-exports.edit = {}
+exports.edit = (req, res) => {
+  const id = req.params.id;
+  const recipe = data.recipes[id]
+
+  res.render('admin/edit', { recipe })
+}
 exports.port = {}
 exports.put = {}
 exports.delete = {}

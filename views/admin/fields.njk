@@ -1,6 +1,6 @@
 <div class="input-container">
   <label for="img">Imagem da receita</label>
-  <input type="url" name="img_url" id="img" placeholder="http://" value="{{ recipe.img_url }}">
+  <input type="url" name="image" id="img" placeholder="http://" value="{{ recipe.image }}">
 </div>
 <div class="input-container ingredients">
   <label for="ingredient">Ingredientes</label>
@@ -8,7 +8,6 @@
       {% if recipe %}
         {% for ingredient in recipe.ingredients %}
             <input type="text" name="ingredients[]" id="ingredient" value="{{ ingredient }}">
-          </div>
         {% endfor %}
       {% else %}
           <input type="text" name="ingredients[]" id="ingredient" value="{{ ingredient }}">
@@ -22,7 +21,6 @@
       {% if recipe %}
         {% for step in recipe.preparation %}
             <input type="text" name="preparation[]" id="step" value="{{ step }}">
-          </div>
         {% endfor %}
       {% else %}
           <input type="text" name="preparation[]" id="step" value="{{ step }}">

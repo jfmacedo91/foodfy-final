@@ -90,9 +90,18 @@ ul {
   cursor: pointer;
 }
 
-.header .save {
+.header .delete {
+  margin-right: 10px;
+}
+
+.header .save input {
   background-color: var(--color-spotlight);
 }
+
+.header .delete input {
+  background-color: var(--color-delete);
+}
+
 
 form .input-container {
   margin-bottom: 30px;
