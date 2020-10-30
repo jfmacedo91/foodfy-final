@@ -10,7 +10,7 @@ exports.show = (req, res) => {
   const id = req.params.id;
   const recipe = data.recipes[id]
 
-  res.render('admin/show', { recipe })
+  res.render('admin/show', { recipe, id })
 }
 exports.edit = (req, res) => {
   const id = req.params.id;
@@ -18,6 +18,8 @@ exports.edit = (req, res) => {
 
   res.render('admin/edit', { recipe })
 }
-exports.port = {}
+exports.post = (req, res) => {
+  console.log(req.body)
+}
 exports.put = {}
 exports.delete = {}

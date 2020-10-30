@@ -7,9 +7,13 @@
 {% block content %}
   <main id="page-recipe">
     <div class="header">
-      <h2>Receita: {{ recipe.title }}</h2>
-      <input type="submit" class="save" value="Editar receita">
-    </div>
+        <h2>Receita: {{ recipe.title }}</h2>
+        <div class="actions">
+          <div class="save">
+            <a href="/admin/recipes/{{ id }}/edit">Editar receita</a>
+          </div>
+        </div>
+      </div>
     <img src="{{ recipe.image }}" alt="imagem de {{ recipe.title }}">
     <h1 class="title">{{ recipe.title }}</h1>
     <span class="author">por {{ recipe.author }}</span>

@@ -1,15 +1,24 @@
 {% extends "layout.njk" %}
 
+{% block header %}
+  {% include "./parts/header.njk" %}
+
+  {% include "./parts/styles.njk" %}
+{% endblock %}
+
 {% block content %}
-  <main id="page-home">
+  <main id="page-home" class="container">
     <section class="banner">
       <h1>As melhores receitas</h1>
-      <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+      <p>Aprenda a construir os melhores pratos com receitas criadas por 
+      profissionais do mundo inteiro.</p>
     </section>
+    
     <section class="most-accessed">
       <h2>Mais acessadas</h2>
-      <div class="recipes">
+      <div class="recipes-grid">
         {% for recipe in recipes %}
+
           {% if loop.index <= 6 %}
             <div class="recipe">
               <img src="{{ recipe.image }}" alt="imagem de {{ recipe.title }}">
@@ -17,6 +26,7 @@
               <span>por {{ recipe.author }}</span>
             </div>
           {% endif %}
+
         {% endfor %}
       </div>
     </section>

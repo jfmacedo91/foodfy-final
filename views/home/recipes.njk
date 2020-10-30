@@ -2,11 +2,17 @@
 
 {% block head %}
   <title>Foodfy - Receitas</title>
+
+  {% include "./parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "./parts/header.njk" %}
 {% endblock %}
 
 {% block content %}
-  <main id="page-recipes">
-    <div class="recipes">
+  <main id="page-recipes" class="container">
+    <div class="recipes-grid">
       {% for recipe in recipes %}
         <div class="recipe">
           <img src="{{ recipe.image }}" alt="image de {{ recipe.title }}">

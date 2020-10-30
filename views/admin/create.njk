@@ -2,12 +2,14 @@
 
 {% block content %}
   <main id="admin-create">
+    <div class="header">
+      <h2>Criando receita</h2>
+      <div class="actions">
+          <input type="submit" value="Salvar receita">
+      </div>
+    </div>
     <form action="/admin/recipes" method="post">
       <div class="header">
-        <h2>Criando receita</h2>
-        <div class="actions">
-          <input type="submit" class="save" value="Salvar receita">
-        </div>
       </div>
       {% include "admin/fields.njk" %}
     </form>

@@ -3,22 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   {% block head %}
     <title>Foodfy</title>
   {% endblock %}
-  <link rel="stylesheet" href="/styles/styles.css">
-  <link rel="stylesheet" href="/styles/pages.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a class="logo" href="/">
-        <img src="/assets/logo.png" alt="Foodfy">
-      </a>
-      <a href="/about">Sobre</a>
-      <a href="/recipes">Receitas</a>
-    </nav>
-  </header>
+  {% block header %}
+  {% endblock %}
   
   {% block content %}
   {% endblock %}
@@ -26,6 +18,7 @@
   <footer>
     <p>Todos direitos reservados, receitas Foodfy.</p>
   </footer>
+
   <script src="/scripts/scripts.js"></script>
 </body>
 </html>
