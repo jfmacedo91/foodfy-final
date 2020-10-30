@@ -1,14 +1,23 @@
-{% extends "./layout.njk" %}
+{% extends "layout.njk" %}
 
 {% block head %}
   <title>Foodfy - {{ recipe.title }}</title>
+
+  {% include "./parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "./parts/header.njk" %}
 {% endblock %}
 
 {% block content %}
-  <main id="page-recipe">
-    <img src="{{ recipe.image }}" alt="imagem de {{ recipe.title }}">
-    <h1 class="title">{{ recipe.title }}</h1>
-    <span class="author">por {{ recipe.author }}</span>
+  <main id="page-recipe" class="container">
+    <section class="spotlight">
+      <img src="{{ recipe.image }}" alt="imagem de {{ recipe.title }}">
+      <h1 class="title">{{ recipe.title }}</h1>
+      <span class="author">por {{ recipe.author }}</span>
+    </section>
+
     <section class="information">
       <h2>Ingredientes <span class="hideShow">Mostrar</span></h2>
       <ul class="data">
@@ -17,6 +26,7 @@
         {% endfor %}
       </ul>
     </section>
+    
     <section class="information">
       <h2>Modo de preparo <span class="hideShow">Mostrar</span></h2>
       <ol class="data">
@@ -25,6 +35,7 @@
         {% endfor %}
       </ol>
     </section>
+
     <section class="information">
       <h2>Informações adicionais <span class="hideShow">Mostrar</span></h2>
       <p class="data">{{ recipe.information }}</p>

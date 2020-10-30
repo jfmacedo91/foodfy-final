@@ -1,0 +1,66 @@
+.spotlight img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  margin-bottom: 50px;
+  border-radius: 15px;
+}
+
+.spotlight h1 {
+  font-size: 36px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.spotlight span {
+  display: block;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--color-text3);
+}
+
+.information {
+  margin-bottom: 40px;
+}
+
+.information:last-child {
+  margin-bottom: 0;
+}
+
+.information h2 {
+  margin-bottom: 20px;
+}
+
+.information h2 span {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text4);
+  cursor: pointer;
+}
+
+.information .data {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 200ms;
+}
+
+.information.show .data {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.information .data li {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-text2);
+}
+
+.information p {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-text2);
+}

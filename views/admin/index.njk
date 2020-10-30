@@ -1,4 +1,8 @@
-{% extends "admin/layout.njk" %}
+{% extends "layout.njk" %}
+
+{% block header %}
+  {% include "./parts/header.njk" %}
+{% endblock %}
 
 {% block content %}
   <main id="admin-recipes">
