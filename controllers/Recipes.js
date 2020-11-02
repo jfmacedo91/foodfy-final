@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 const data = require('../data.json')
 
 exports.index = (req, res) => {
@@ -14,12 +16,79 @@ exports.show = (req, res) => {
 }
 exports.edit = (req, res) => {
   const id = req.params.id;
-  const recipe = data.recipes[id]
+  let recipe = data.recipes[id]
 
-  res.render('admin/edit', { recipe })
+  recipe.information = recipe.information.replace(/<br \/>/g, '\r\n')
+
+  res.render('admin/edit', { recipe, id })
 }
 exports.post = (req, res) => {
-  console.log(req.body)
+  let {
+    title,
+    author,
+    image,
+    ingredients,
+    preparation,
+    information
+  } = req.body
+
+  information = information.replace(/\r\n/g, '<br />')
+
+  data.recipes.push({
+    image,
+    title,
+    author,
+    ingredients,
+    preparation,
+    information
+  })
+
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), (error) => {
+    if(error) return res.send('Write file error!')
+  })
+
+  return res.redirect('/admin/recipes')
 }
-exports.put = {}
-exports.delete = {}
+exports.put = (req, res) => {
+  let {
+    id,
+    title,
+    author,
+    image,
+    ingredients,
+    preparation,
+    information
+  } = req.body
+
+  information = information.replace(/\r\n/g, '<br />')
+
+  data.recipes[id] = ({
+    image,
+    title,
+    author,
+    ingredients,
+    preparation,
+    information
+  })
+
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), (error) => {
+    if(error) return res.send('Write file error!')
+  })
+
+  return res.redirect('/admin/recipes')
+}
+exports.delete = (req, res) => {
+  let { id } = req.body
+
+  const filteredRecipes = data.recipes.filter(recipe => {
+    return recipe != data.recipes[id]
+  })
+
+  data.recipes = filteredRecipes
+
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), (error) => {
+    if(error) return res.send('Write file error!')
+  })
+
+  return res.redirect('/admin/recipes')
+}

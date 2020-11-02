@@ -1,3 +1,15 @@
+<input type="hidden" name="id" value="{{ id }}">
+
+<div class="input-container">
+  <label for="title">Título da receita</label>
+  <input type="text" name="title" id="title" value="{{ recipe.title }}">
+</div>
+
+<div class="input-container">
+  <label for="author">Autor</label>
+  <input type="text" name="author" id="author" value="{{ recipe.author }}">
+</div>
+
 <div class="input-container">
   <label for="img">Imagem da receita</label>
   <input type="url" name="image" id="img" placeholder="http://" value="{{ recipe.image }}">

@@ -15,10 +15,10 @@
     <div class="header">
       <h2>Criando receita</h2>
       <div class="actions">
-          <input type="submit" value="Salvar receita">
+          <button type="submit" form="form-create" class="button action-button">Salvar receita</button>
       </div>
     </div>
-    <form action="/admin/recipes" method="post">
+    <form id="form-create" action="/admin/recipes" method="POST">
       <div class="header">
       </div>
       {% include "admin/fields.njk" %}

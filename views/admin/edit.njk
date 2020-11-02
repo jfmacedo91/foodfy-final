@@ -19,8 +19,12 @@
           <button type="submit" form="form-edit" class="button action-button">Salvar Receita</button>
         </div>
       </div>
-    <form action="/admin/recipes" method="post">
+    <form id="form-edit" action="/admin/recipes?_method=PUT" method="POST">
       {% include "admin/fields.njk" %}
+    </form>
+
+    <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
+      <input type="hidden" name="id" value="{{ id }}">
     </form>
   </main>
 {% endblock %}

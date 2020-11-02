@@ -1,7 +1,7 @@
 const express = require('express')
 const routes = express.Router()
 
-const recipes = require('./data')
+const { recipes } = require('./data.json')
 
 const RecipesController = require('./controllers/Recipes')
 
@@ -27,7 +27,7 @@ routes.get('/admin/recipes/:id', RecipesController.show)
 routes.get('/admin/recipes/:id/edit', RecipesController.edit)
 
 routes.post('/admin/recipes', RecipesController.post)
-// routes.put('/admin/recipes', RecipesController.put)
-// routes.delete('/admin/recipes', RecipesController.delete)
+routes.put('/admin/recipes', RecipesController.put)
+routes.delete('/admin/recipes', RecipesController.delete)
 
 module.exports = routes
