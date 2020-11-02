@@ -1,16 +1,22 @@
-{% extends "admin/layout.njk" %}
+{% extends "layout.njk" %}
+
+{% block head %}
+  <title>Editar {{ recipe.title }}</title>
+
+  {% include "./parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "./parts/header.njk" %}
+{% endblock %}
 
 {% block content %}
-  <main id="admin-create">
+  <main id="admin-edit" class="container">
       <div class="header">
         <h2>Editando receita</h2>
         <div class="actions">
-          <form action="" class="delete" method="post">
-            <input type="submit" value="Deletar">
-          </form>
-          <form action="" class="save" method="post">
-            <input type="submit" value="Salvar receita">
-          </form>
+          <button type="submit" form="form-delete" class="button delete-button">Deletar</button>
+          <button type="submit" form="form-edit" class="button action-button">Salvar Receita</button>
         </div>
       </div>
     <form action="/admin/recipes" method="post">

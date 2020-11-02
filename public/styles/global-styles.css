@@ -9,7 +9,7 @@
   --color-delete: #DC4747;
   --color-spotlight: #6558C3;
   --color-background-body: #FDFDFF;
-  --color-background-footer: #EEEEEE;
+  --color-background-footer: #EDEDEE;
 }
 
 * {
@@ -42,6 +42,11 @@ h2 {
 
 h3 {
   font-size: 20px;
+  font-weight: 700;
+}
+
+label {
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -104,6 +109,7 @@ footer p {
 }
 
 .container {
+  width: 100%;
   max-width: 940px;
   margin: 0 auto;
 }

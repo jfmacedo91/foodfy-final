@@ -1,7 +1,17 @@
-{% extends "admin/layout.njk" %}
+{% extends "layout.njk" %}
+
+{% block head %}
+  <title>Criar receita</title>
+
+  {% include "./parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "./parts/header.njk" %}
+{% endblock %}
 
 {% block content %}
-  <main id="admin-create">
+  <main id="admin-create" class="container">
     <div class="header">
       <h2>Criando receita</h2>
       <div class="actions">

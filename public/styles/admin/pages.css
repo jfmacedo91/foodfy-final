@@ -1,0 +1,82 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header .actions {
+  display: flex;
+}
+
+.header .actions :first-child {
+  margin-right: 10px;
+}
+
+.button {
+  padding: 9px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  filter: brightness(1.1);
+}
+
+.action-button {
+  background-color: var(--color-spotlight);
+}
+
+.delete-button {
+  background-color: var(--color-delete);
+}
+
+main > img {
+  width: 100%;
+  height: 280px;
+  margin-bottom: 50px;
+  border-radius: 15px;
+}
+
+main > h1 {
+  margin-bottom: 4px;
+  font-size: 36px;
+  text-align: center;
+}
+
+main > span {
+  display: block;
+  margin-bottom: 30px;
+  font-size: 20px;
+  text-align: center;
+  color: var(--color-text3);
+}
+
+.information {
+  margin-bottom: 40px;
+}
+
+.information:last-child {
+  margin-bottom: 0;
+}
+
+.information h2 {
+  margin-bottom: 20px;
+}
+
+.information ul,
+.information ol {
+  list-style-type: "- ";
+}
+
+.information li,
+.information p {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-text2)
+}
