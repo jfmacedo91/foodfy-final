@@ -3,16 +3,16 @@ const fs = require('fs')
 const data = require('../data.json')
 
 exports.index = (req, res) => {
-  return res.render('admin/recipes', { recipes: data.recipes })
+  return res.render('admin/recipes/list', { recipes: data.recipes })
 }
 exports.create = (req, res) => {
-  return res.render('admin/create')
+  return res.render('admin/recipes/create')
 }
 exports.show = (req, res) => {
   const id = req.params.id;
   const recipe = data.recipes[id]
 
-  res.render('admin/detail', { recipe, id })
+  res.render('admin/recipes/detail', { recipe, id })
 }
 exports.edit = (req, res) => {
   const id = req.params.id;
@@ -20,7 +20,7 @@ exports.edit = (req, res) => {
 
   recipe.information = recipe.information.replace(/<br \/>/g, '\r\n')
 
-  res.render('admin/edit', { recipe, id })
+  res.render('admin/recipes/edit', { recipe, id })
 }
 exports.post = (req, res) => {
   let {

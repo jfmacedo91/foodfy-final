@@ -4,6 +4,7 @@ const routes = express.Router()
 const { recipes } = require('./data.json')
 
 const RecipesController = require('./controllers/Recipes')
+const ChefsController = require('./controllers/Chefs')
 
 routes.get('/', (req, res) => {
   return res.render('home/index', { recipes })
@@ -29,5 +30,7 @@ routes.get('/admin/recipes/:id/edit', RecipesController.edit)
 routes.post('/admin/recipes', RecipesController.post)
 routes.put('/admin/recipes', RecipesController.put)
 routes.delete('/admin/recipes', RecipesController.delete)
+
+routes.get('/chefs/list', ChefsController.index)
 
 module.exports = routes

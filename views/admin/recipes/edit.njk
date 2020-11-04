@@ -3,11 +3,11 @@
 {% block head %}
   <title>Editar {{ recipe.title }}</title>
 
-  {% include "./parts/styles.njk" %}
+  {% include "../parts/styles.njk" %}
 {% endblock %}
 
 {% block header %}
-  {% include "./parts/header.njk" %}
+  {% include "../parts/header.njk" %}
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
         </div>
       </div>
     <form id="form-edit" action="/admin/recipes?_method=PUT" method="POST">
-      {% include "admin/fields.njk" %}
+      {% include "admin/recipes/fields.njk" %}
     </form>
 
     <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
