@@ -8,6 +8,9 @@
 
 {% block header %}
   {% include "./parts/header.njk" %}
+  
+    </div>
+  </header>
 {% endblock %}
 
 {% block content %}
@@ -41,4 +44,8 @@
       <p class="data">{{ recipe.information }}</p>
     </section>
   </main>
+{% endblock %}
+
+{% block footer %}
+  {% include "./parts/footer.njk" %}
 {% endblock %}

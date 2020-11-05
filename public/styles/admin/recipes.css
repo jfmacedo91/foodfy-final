@@ -1,7 +1,3 @@
-#admin-recipes .header h2 {
-  line-height: 37px;
-}
-
 .recipes {
   display: grid;
   grid-template-columns: 1fr 1fr;

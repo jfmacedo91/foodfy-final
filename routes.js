@@ -7,19 +7,22 @@ const RecipesController = require('./controllers/Recipes')
 const ChefsController = require('./controllers/Chefs')
 
 routes.get('/', (req, res) => {
-  return res.render('home/index', { recipes })
+  return res.render('site/index', { recipes })
 })
 routes.get('/about', (req, res) => {
-  return res.render('home/about')
+  return res.render('site/about')
 })
 routes.get('/recipes', (req, res) => {
-  return res.render('home/recipes', { recipes })
+  return res.render('site/recipes', { recipes })
 })
 routes.get('/recipes/:index', (req, res) => {
   const index = req.params.index;
   const recipe = recipes[index]
 
-  res.render('home/recipe', { recipe })
+  res.render('site/recipe', { recipe })
+})
+routes.get('/chefs/list', (req, res) => {
+  return res.render('site/chefs')
 })
 
 routes.get('/admin/recipes', RecipesController.index)
@@ -31,6 +34,6 @@ routes.post('/admin/recipes', RecipesController.post)
 routes.put('/admin/recipes', RecipesController.put)
 routes.delete('/admin/recipes', RecipesController.delete)
 
-routes.get('/chefs/list', ChefsController.index)
+routes.get('/admin/chefs', ChefsController.index)
 
 module.exports = routes

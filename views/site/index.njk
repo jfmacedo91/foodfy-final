@@ -8,6 +8,11 @@
 
 {% block header %}
   {% include "./parts/header.njk" %}
+
+  {% include "./parts/search.njk" %}
+  
+    </div>
+  </header>
 {% endblock %}
 
 {% block content %}
@@ -35,4 +40,8 @@
       </div>
     </section>
   </main>
+{% endblock %}
+
+{% block footer %}
+  {% include "./parts/footer.njk" %}
 {% endblock %}
