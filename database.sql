@@ -1,3 +1,7 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
+DROP DATABASE IF EXISTS foodfydb;
 CREATE DATABASE foodfydb;
 
 CREATE TABLE "recipes" (
