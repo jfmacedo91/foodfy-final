@@ -56,10 +56,10 @@ ul, ol {
 
 main {
   flex: 1;
+  padding-bottom: 50px;
 }
 
 footer {
-  margin-top: 50px;
   padding: 23px 0;
   text-align: center;
   background-color: var(--color-background-footer);
