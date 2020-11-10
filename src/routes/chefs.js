@@ -6,7 +6,9 @@ const ChefsController = require('../app/controllers/Chefs')
 routes.get('/', ChefsController.index)
 routes.get('/create', ChefsController.create)
 routes.get('/:id', ChefsController.show)
+routes.get('/:id/edit', ChefsController.edit)
 
 routes.post('/', ChefsController.post)
+routes.put('/', ChefsController.put)
 
 module.exports = routes
