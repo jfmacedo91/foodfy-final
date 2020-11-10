@@ -35,15 +35,15 @@ header nav a:last-child {
   margin-right: 0;
 }
 
-.header h2 {
-  line-height: 37px;
-}
-
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 26px;
+}
+
+.header h2 {
+  line-height: 37px;
 }
 
 .header .actions {
@@ -98,4 +98,17 @@ main > span {
   font-size: 18px;
   line-height: 28px;
   color: var(--color-text2)
+}
+
+main#chef-show > img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 16px auto 30px;
+  border-radius: 50%;
+}
+
+main#chef-show .chef-recipes h2 {
+  margin-bottom: 30px;
 }

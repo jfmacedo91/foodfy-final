@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+  <title>{{ chef.name }}</title>
+
+  {% include "../parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "../parts/header.njk" %}
+{% endblock %}
+
+{% block content %}
+  <main id="chef-show" class="container">
+    <div class="header">
+      <h2>Chef: {{ chef.name }}</h2>
+      <div class="actions">
+        <a href="/admin/recipes/{{ id }}/edit" class="button action-button">Editar receita</a>
+      </div>
+    </div>
+
+    <img src="{{ chef.avatar_url }}" alt="imagem de {{ chef.name }}">
+    <h1 class="title">{{ chef.name }}</h1>
+    <span class="author">4 receitas</span>
+
+    <section class="chef-recipes">
+      <h2>Receitas</h2>
+
+      {% include "../parts/recipes.njk" %}
+    </section>
+{% endblock %}

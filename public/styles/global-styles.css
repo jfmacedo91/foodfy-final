@@ -129,3 +129,45 @@ footer p {
 .delete-button {
   background-color: var(--color-delete);
 }
+
+.chefs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 30px;
+  column-gap: 20px;
+}
+
+.chefs-grid .chef {
+  display: flex;
+}
+
+.chefs-grid .chef img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.chef-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chef-info p {
+  font-size: 18px;
+  color: var(--color-text1);
+}
+
+.chef-info span {
+  font-size: 14px;
+  color: var(--color-text3);
+}
+
+.chef-info a {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-spotlight);
+  cursor: pointer;
+}

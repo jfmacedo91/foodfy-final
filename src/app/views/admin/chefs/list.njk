@@ -16,14 +16,14 @@
       <h2>Gerencias chefs</h2>
     </div>
 
-    <div class="chefs">
+    <div class="chefs-grid">
       {% for chef in chefs %}
         <div class="chef">
-          <img src="{{ chef.image }}" alt="image de {{ chef.name }}">
+          <img src="{{ chef.avatar_url }}" alt="image de {{ chef.name }}">
 
           <div class="chef-info">
             <p>{{ chef.name }}</p>
-            <a>Visualizar</a>
+            <a href="/admin/chefs/{{ chef.id }}">Visualizar</a>
           </div>
         </div>
       {% endfor %}

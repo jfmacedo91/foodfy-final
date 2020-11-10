@@ -16,18 +16,6 @@
       <h2>Gerencias receitas</h2>
     </div>
 
-    <div class="recipes">
-      {% for recipe in recipes %}
-        <div class="recipe">
-          <img src="{{ recipe.image }}" alt="image de {{ recipe.title }}">
-
-          <div class="recipe-info">
-            <p>{{ recipe.title }}</p>
-            <span>por {{ recipe.author }}</span>
-            <a>Visualizar</a>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+    {% include "../parts/recipes.njk" %}
   </main>
 {% endblock %}
