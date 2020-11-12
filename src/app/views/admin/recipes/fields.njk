@@ -1,4 +1,4 @@
-<input type="hidden" name="id" value="{{ id }}">
+<input type="hidden" name="id" value="{{ recipe.id }}">
 
 <div class="input-container">
   <label for="title">Título da receita</label>
@@ -6,8 +6,13 @@
 </div>
 
 <div class="input-container">
-  <label for="author">Autor</label>
-  <input type="text" name="author" id="author" value="{{ recipe.author }}">
+  <label for="chef">Chef</label>
+  <select name="chef" id="chef">
+    <option value="" disabled selected hidden>Selecione um chef</option>
+    {% for chef in chefs %}
+      <option value="{{ chef.id }}">{{ chef.name }}</option>
+    {% endfor %}
+  </select>
 </div>
 
 <div class="input-container">

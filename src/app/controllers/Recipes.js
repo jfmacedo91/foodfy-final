@@ -1,20 +1,33 @@
-const fs = require('fs')
-
 const data = require('../../../data.json')
 const Recipe = require('../models/Recipe')
+const Chef = require('../models/Chef')
 
 module.exports = {
-  index(req, res) {
-    return res.render('admin/recipes/list', { recipes: data.recipes })
-  },
-  create(req, res) {
-    return res.render('admin/recipes/create')
-  },
-  show(req, res) {
-    const id = req.params.id;
-    const recipe = data.recipes[id]
+  async index(req, res) {
+    const recipesResults = await Recipe.all()
+    const recipes = recipesResults.rows
+
+    const chefsResults = await Chef.all()
+    const chefs = chefsResults.rows
   
-    res.render('admin/recipes/detail', { recipe, id })
+    return res.render('admin/recipes/list', { recipes, chefs })
+  },
+  async create(req, res) {
+    const results = await Chef.all()
+    const chefs = results.rows
+
+    return res.render('admin/recipes/create', { chefs })
+  },
+  async show(req, res) {
+    const { id } = req.params
+    const recipesResults = await Recipe.all()
+    const recipes = recipesResults.rows
+    const recipe = recipes[id-1]
+
+    const chefsResults = await Chef.all()
+    const chefs = chefsResults.rows
+  
+    res.render('admin/recipes/detail', { recipe, chefs })
   },
   edit(req, res) {
     const id = req.params.id;
@@ -24,10 +37,12 @@ module.exports = {
   
     res.render('admin/recipes/edit', { recipe, id })
   },
-  post(req, res) {
-    Recipe.create(req.body, recipe => {
-      return res.redirect(`/admin/recipes/${recipe.id}`)
-    })
+  async post(req, res) {
+    await Recipe.create(req.body)
+    const recipe = req.body
+
+    console.log(recipe.id)
+    return res.redirect(`/admin/recipes/${recipe.id}`)
   },
   put(req, res) {
     let recipe = req.body

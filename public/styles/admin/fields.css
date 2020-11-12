@@ -4,13 +4,19 @@
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   margin-top: 10px;
   padding: 15px 20px;
   font-size: 16px;
   border-radius: 4px;
   border: 1px solid #DDDDDD;
+  background-color: #FFFFFF;
+}
+
+select {
+  color: var(--color-text4);
 }
 
 textarea {

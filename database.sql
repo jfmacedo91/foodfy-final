@@ -6,9 +6,9 @@ CREATE DATABASE foodfydb;
 
 CREATE TABLE "recipes" (
   "id" SERIAL PRIMARY KEY,
-  "chef_id" int,
-  "image" text,
   "title" text,
+  "image" text,
+  "chef_id" int,
   "ingredients" text[],
   "preparation" text[],
   "information" text,

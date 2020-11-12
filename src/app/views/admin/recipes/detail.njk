@@ -21,7 +21,7 @@
 
     <img src="{{ recipe.image }}" alt="imagem de {{ recipe.title }}">
     <h1 class="title">{{ recipe.title }}</h1>
-    <span class="author">por {{ recipe.author }}</span>
+    <span class="author">por {{ chefs[recipe.chef_id-1].name }}</span>
 
     <section class="information">
       <h2>Ingredientes</h2>

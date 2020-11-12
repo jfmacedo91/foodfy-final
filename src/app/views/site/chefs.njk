@@ -15,7 +15,18 @@
 
 {% block content %}
   <main id="page-chefs" class="container">
-    
+    <div class="chefs-grid">
+      {% for chef in chefs %}
+        <div class="chef">
+          <img src="{{ chef.avatar_url }}" alt="image de {{ chef.name }}">
+
+          <div class="chef-info">
+            <p>{{ chef.name }}</p>
+            <span>3 receitas</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </main>
 {% endblock %}
 

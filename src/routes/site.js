@@ -2,6 +2,7 @@ const express = require('express')
 const routes = express.Router()
 
 const { recipes } = require('../../data.json')
+const Chef = require('../app/models/Chef')
 
 routes.get('/', (req, res) => {
   return res.render('site/index', { recipes })
@@ -18,8 +19,11 @@ routes.get('/recipes/:index', (req, res) => {
 
   res.render('site/recipe', { recipe })
 })
-routes.get('/chefs', (req, res) => {
-  return res.render('site/chefs')
+routes.get('/chefs',async (req, res) => {
+  const results = await Chef.all()
+  const chefs = results.rows
+
+  return res.render('site/chefs', { chefs })
 })
 
 module.exports = routes

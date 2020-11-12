@@ -12,7 +12,7 @@ const informations = document.querySelectorAll('.information')
 
 for(let i = 0; i < recipes.length; i++) {
   recipes[i].addEventListener('click', () => {
-    window.location.href = `/recipes/${i}`
+    window.location.href = `/recipes/${i+1}`
   })
 }
 
@@ -32,7 +32,7 @@ const details = document.querySelectorAll('.recipe')
 
 for(let i = 0; i < details.length; i++) {
   details[i].querySelector('a').addEventListener('click', () => {
-    window.location.href = `/admin/recipes/${i}`
+    window.location.href = `/admin/recipes/${i+1}`
   })
 }
 
