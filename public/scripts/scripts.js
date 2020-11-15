@@ -28,14 +28,6 @@ for(const information of informations) {
   })
 }
 
-const details = document.querySelectorAll('.recipe')
-
-for(let i = 0; i < details.length; i++) {
-  details[i].querySelector('a').addEventListener('click', () => {
-    window.location.href = `/admin/recipes/${i+1}`
-  })
-}
-
 document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
 
 function addIngredient() {

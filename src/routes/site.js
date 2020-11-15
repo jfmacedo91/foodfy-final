@@ -19,11 +19,10 @@ routes.get('/recipes/:index', (req, res) => {
 
   res.render('site/recipe', { recipe })
 })
-routes.get('/chefs',async (req, res) => {
-  const results = await Chef.all()
-  const chefs = results.rows
-
-  return res.render('site/chefs', { chefs })
+routes.get('/chefs', (req, res) => {
+  Chef.all(chefs => {
+    return res.render('site/chefs', { chefs })
+  })
 })
 
 module.exports = routes

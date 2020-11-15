@@ -10,5 +10,6 @@ routes.get('/:id/edit', ChefsController.edit)
 
 routes.post('/', ChefsController.post)
 routes.put('/', ChefsController.put)
+routes.delete('/', ChefsController.delete)
 
 module.exports = routes

@@ -6,7 +6,7 @@
       <div class="recipe-info">
         <p>{{ recipe.title }}</p>
         <span>por {{ chefs[recipe.chef_id-1].name }}</span>
-        <a>Visualizar</a>
+        <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
       </div>
     </div>
   {% endfor %}

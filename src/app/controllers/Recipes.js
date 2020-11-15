@@ -7,10 +7,9 @@ module.exports = {
     const recipesResults = await Recipe.all()
     const recipes = recipesResults.rows
 
-    const chefsResults = await Chef.all()
-    const chefs = chefsResults.rows
-  
-    return res.render('admin/recipes/list', { recipes, chefs })
+    Chef.all(chefs => {
+      return res.render('admin/recipes/list', { recipes, chefs })
+    })
   },
   async create(req, res) {
     const results = await Chef.all()
@@ -24,10 +23,9 @@ module.exports = {
     const recipes = recipesResults.rows
     const recipe = recipes[id-1]
 
-    const chefsResults = await Chef.all()
-    const chefs = chefsResults.rows
-  
-    res.render('admin/recipes/detail', { recipe, chefs })
+    Chef.all(chefs => {
+      return res.render('admin/recipes/detail', { recipe, chefs })
+    })
   },
   edit(req, res) {
     const id = req.params.id;

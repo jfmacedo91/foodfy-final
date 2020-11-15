@@ -1,36 +1,46 @@
 const db = require('../../config/db')
 
 module.exports = {
-  all() {
-    return db.query(`SELECT * FROM chefs`)
-  }, 
-  create(data) {
+  all(callback) {
+    db.query(`SELECT * FROM chefs`, (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+      
+      callback(results.rows)
+    })
+  },
+  create(data, callback) {
     const query = `
-      INSERT INTO chefs (
-        name,
-        avatar_url
+    INSERT INTO chefs (
+      name,
+      avatar_url
       ) VALUES ($1, $2)
       RETURNING id
-    `
-
-    const values = [
-      data.name,
-      data.avatar_url
+      `
+      
+      const values = [
+        data.name,
+        data.avatar_url
     ]
 
-    return db.query(query, values)
+    db.query(query, values, (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+
+      callback(results.rows[0])
+    })
   },
-  findOne(id) {
-    return db.query(`
-      SELECT * FROM chefs WHERE id = $1
-    `, [id])
+  find(id, callback) {
+    db.query(`SELECT * FROM chefs WHERE id = $1`, [id], (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+
+      callback(results.rows[0])
+    })
   },
-  update(data) {
+  update(data, callback) {
     const query = `
       UPDATE chefs SET
         name=($1),
         avatar_url=($2)
-      WHERE id = ($3)
+      WHERE id = $3
     `
 
     const values = [
@@ -39,6 +49,17 @@ module.exports = {
       data.id
     ]
 
-    return db.query(query, values)
+    return db.query(query, values, (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+
+      callback()
+    })
+  },
+  delete(id, callback) {
+    db.query(`DELETE FROM chefs WHERE id = $1`, [id], (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+
+      return callback()
+    })
   }
 }
