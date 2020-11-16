@@ -20,11 +20,12 @@
         </div>
       </div>
     <form id="form-edit" action="/admin/recipes?_method=PUT" method="POST">
+      <input type="hidden" name="id" value="{{ recipe.id }}">
       {% include "./fields.njk" %}
     </form>
 
     <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
-      <input type="hidden" name="id" value="{{ id }}">
+      <input type="hidden" name="id" value="{{ recipe.id }}">
     </form>
   </main>
 {% endblock %}

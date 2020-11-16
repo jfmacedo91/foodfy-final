@@ -1,4 +1,4 @@
-const data = require('../../../data.json')
+const Recipe = require('../models/Recipe')
 const Chef = require('../models/Chef')
 
 module.exports = {
@@ -14,7 +14,9 @@ module.exports = {
     Chef.find(req.params.id, chef => {
       if(!chef) return res.send('Chef não encontrado!')
 
-      return res.render('admin/chefs/show', { chef, recipes: data.recipes })
+      Recipe.all(recipes => {
+        return res.render('admin/chefs/show', { chef, recipes })
+      })
     })
   },
   post(req, res) {

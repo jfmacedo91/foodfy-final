@@ -1,80 +1,59 @@
-const data = require('../../../data.json')
 const Recipe = require('../models/Recipe')
-const Chef = require('../models/Chef')
 
 module.exports = {
-  async index(req, res) {
-    const recipesResults = await Recipe.all()
-    const recipes = recipesResults.rows
-
-    Chef.all(chefs => {
-      return res.render('admin/recipes/list', { recipes, chefs })
+  index(req, res) {
+    Recipe.all(recipes => {
+      return res.render('admin/recipes/list', { recipes })
     })
   },
-  async create(req, res) {
-    const results = await Chef.all()
-    const chefs = results.rows
-
-    return res.render('admin/recipes/create', { chefs })
+  create(req, res) {
+    Recipe.chefsSelectOptions(chefs => {
+      return res.render('admin/recipes/create', { chefs })
+    })
   },
-  async show(req, res) {
-    const { id } = req.params
-    const recipesResults = await Recipe.all()
-    const recipes = recipesResults.rows
-    const recipe = recipes[id-1]
-
-    Chef.all(chefs => {
-      return res.render('admin/recipes/detail', { recipe, chefs })
+  show(req, res) {
+    Recipe.find(req.params.id, recipe => {
+      return res.render('admin/recipes/detail', { recipe })
     })
   },
   edit(req, res) {
-    const id = req.params.id;
-    let recipe = data.recipes[id]
-  
-    recipe.information = recipe.information.replace(/<br \/>/g, '\r\n')
-  
-    res.render('admin/recipes/edit', { recipe, id })
-  },
-  async post(req, res) {
-    await Recipe.create(req.body)
-    const recipe = req.body
+    Recipe.find(req.params.id, recipe => {
+      recipe.information = recipe.information.replace(/<br \/>/g, '\r\n')
 
-    console.log(recipe.id)
-    return res.redirect(`/admin/recipes/${recipe.id}`)
+      Recipe.chefsSelectOptions(chefs => {
+        res.render('admin/recipes/edit', { recipe, chefs })
+      })
+    })
+  },
+  post(req, res) {
+    const keys = Object.keys(req.body)
+
+    for(key of keys) {
+      if(req.body[key] == '') {
+        return res.send('Por favor, preencha todos os campos!')
+      }
+    }
+
+    Recipe.create(req.body, recipe => {
+      return res.redirect(`/admin/recipes/${recipe.id}`)
+    })
   },
   put(req, res) {
-    let recipe = req.body
-  
-    information = recipe.information.replace(/\r\n/g, '<br />')
-  
-    data.recipes[recipe.id] = ({
-      image: recipe.image,
-      title: recipe.title,
-      author: recipe.author,
-      ingredients: recipe.ingredients,
-      preparation: recipe.preparation,
-      information
+    const keys = Object.keys(req.body)
+
+    for(key of keys) {
+      if(req.body[key] == '') {
+        return res.send('Por favor, preencha todos os campos!')
+      }
+    }
+
+    Recipe.update(req.body, recipe => {
+      return res.redirect(`/admin/recipes/${recipe.id}`)
     })
-  
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (error) => {
-      if(error) return res.send('Write file error!')
-    })
-  
-    return res.redirect('/admin/recipes')
   },
   delete(req, res) {
-    let { id } = req.body
-  
-    const filteredRecipes = data.recipes.filter(recipe => {
-      return recipe != data.recipes[id]
+    Recipe.delete(req.body.id, () => {
+      return res.redirect('/admin/recipes')
     })
-  
-    data.recipes = filteredRecipes
-  
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (error) => {
-      if(error) return res.send('Write file error!')
-    })
-  
-    return res.redirect('/admin/recipes')
   }
 }
