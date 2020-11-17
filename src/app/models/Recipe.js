@@ -55,6 +55,19 @@ module.exports = {
       callback(results.rows[0])
     })
   },
+  findBy(filter, callback) {
+    db.query(`
+      SELECT recipes.*, chefs.name AS chef_name
+      FROM recipes
+      LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
+      WHERE recipes.title ILIKE '%${filter}%'
+      ORDER BY recipes.title
+    `, (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+
+      callback(results.rows)
+    })
+  },
   update(data, callback) {
     const query = `
       UPDATE recipes SET

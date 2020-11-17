@@ -5,9 +5,9 @@ const Recipe = require('../app/models/Recipe')
 const Chef = require('../app/models/Chef')
 
 routes.get('/', (req, res) => {
-  Recipe.all(recipes => {
-    return res.render('site/index', { recipes })
-  })
+    Recipe.all(recipes => {
+      return res.render('site/index', { recipes })
+    })
 })
 routes.get('/about', (req, res) => {
   return res.render('site/about')
@@ -15,6 +15,13 @@ routes.get('/about', (req, res) => {
 routes.get('/recipes', (req, res) => {
   Recipe.all(recipes => {
     return res.render('site/recipes', { recipes })
+  })
+})
+routes.get('/recipes/search', (req, res) => {
+  const { filter } = req.query
+
+  Recipe.findBy(filter, recipes => {
+    return res.render('site/search', { recipes, filter })
   })
 })
 routes.get('/recipes/:id', (req, res) => {

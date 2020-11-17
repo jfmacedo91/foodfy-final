@@ -46,6 +46,9 @@ header .search input {
   outline: none;
 }
 
+.header {
+  margin-bottom: 20px;
+}
 
 #page-home .banner {
   display: flex;

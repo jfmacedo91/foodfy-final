@@ -1,4 +1,4 @@
-<div class="search">
-  <input type="text" name="search" placeholder="Buscar uma receita">
+<form action="/recipes/search" method="GET" class="search">
+  <input type="text" name="filter" placeholder="Buscar uma receita" value="{{ filter }}">
   <button type="submit" class="button action-button">Buscar</button>
-</div>
+</form>
