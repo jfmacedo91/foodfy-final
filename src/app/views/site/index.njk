@@ -29,11 +29,11 @@
         {% for recipe in recipes %}
 
           {% if loop.index <= 6 %}
-            <div class="recipe">
+            <a class="recipe" href="/recipes/{{ recipe.id }}">
               <img src="{{ recipe.image }}" alt="imagem de {{ recipe.title }}">
               <p>{{ recipe.title }}</p>
-              <span>por {{ recipe.author }}</span>
-            </div>
+              <span>por {{ recipe.chef_name }}</span>
+            </a>
           {% endif %}
 
         {% endfor %}

@@ -7,49 +7,46 @@ for(item of menuItens) {
   }
 }
 
-const recipes = document.querySelectorAll('.recipes-grid .recipe')
-const informations = document.querySelectorAll('.information')
-
-for(let i = 0; i < recipes.length; i++) {
-  recipes[i].addEventListener('click', () => {
-    window.location.href = `/recipes/${i+1}`
-  })
+if(!currentPage.includes('admin')) {
+  const informations = document.querySelectorAll('.information')
+  
+  for(const information of informations) {
+    const hideShowButton = information.querySelector('.hideShow')
+    hideShowButton.addEventListener('click', () => {
+      information.classList.toggle('show')
+      if(hideShowButton.innerHTML == 'Mostrar') {
+        hideShowButton.innerHTML = 'Esconder'
+      } else {
+        hideShowButton.innerHTML = 'Mostrar'
+      }
+    })
+  }
 }
 
-for(const information of informations) {
-  const hideShowButton = information.querySelector('.hideShow')
-  hideShowButton.addEventListener('click', () => {
-    information.classList.toggle('show')
-    if(hideShowButton.innerHTML == 'Mostrar') {
-      hideShowButton.innerHTML = 'Esconder'
-    } else {
-      hideShowButton.innerHTML = 'Mostrar'
-    }
-  })
-}
-
-document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
-
-function addIngredient() {
-  const ingredients = document.querySelector("#ingredients")
-  const fieldContainer = document.querySelectorAll('.ingredient')
-  const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
-
-  if(newField.children[0].value == '') return false
-
-  newField.children[0].value = ''
-  ingredients.appendChild(newField)
-}
-
-document.querySelector('.add-step').addEventListener('click', addStep)
-
-function addStep() {
-  const preparation = document.querySelector("#preparation")
-  const fieldContainer = document.querySelectorAll('.step')
-  const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
-
-  if(newField.children[0].value == '') return false
-
-  newField.children[0].value = ''
-  preparation.appendChild(newField)
+if(currentPage.includes('create') || currentPage.includes('edit')) {
+  document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
+  
+  function addIngredient() {
+    const ingredients = document.querySelector("#ingredients")
+    const fieldContainer = document.querySelectorAll('.ingredient')
+    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
+  
+    if(newField.children[0].value == '') return false
+  
+    newField.children[0].value = ''
+    ingredients.appendChild(newField)
+  }
+  
+  document.querySelector('.add-step').addEventListener('click', addStep)
+  
+  function addStep() {
+    const preparation = document.querySelector("#preparation")
+    const fieldContainer = document.querySelectorAll('.step')
+    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
+  
+    if(newField.children[0].value == '') return false
+  
+    newField.children[0].value = ''
+    preparation.appendChild(newField)
+  }
 }

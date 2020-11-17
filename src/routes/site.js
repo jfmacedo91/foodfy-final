@@ -1,23 +1,26 @@
 const express = require('express')
 const routes = express.Router()
 
-const { recipes } = require('../../data.json')
+const Recipe = require('../app/models/Recipe')
 const Chef = require('../app/models/Chef')
 
 routes.get('/', (req, res) => {
-  return res.render('site/index', { recipes })
+  Recipe.all(recipes => {
+    return res.render('site/index', { recipes })
+  })
 })
 routes.get('/about', (req, res) => {
   return res.render('site/about')
 })
 routes.get('/recipes', (req, res) => {
-  return res.render('site/recipes', { recipes })
+  Recipe.all(recipes => {
+    return res.render('site/recipes', { recipes })
+  })
 })
-routes.get('/recipes/:index', (req, res) => {
-  const index = req.params.index;
-  const recipe = recipes[index]
-
-  res.render('site/recipe', { recipe })
+routes.get('/recipes/:id', (req, res) => {
+  Recipe.find(req.params.id, recipe => {
+    res.render('site/recipe', { recipe })
+  })
 })
 routes.get('/chefs', (req, res) => {
   Chef.all(chefs => {
