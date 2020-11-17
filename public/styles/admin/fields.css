@@ -15,10 +15,6 @@ select {
   background-color: #FFFFFF;
 }
 
-select {
-  color: var(--color-text4);
-}
-
 textarea {
   resize: none;
   height: 257px;

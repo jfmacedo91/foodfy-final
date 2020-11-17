@@ -3,9 +3,11 @@ const db = require('../../config/db')
 module.exports = {
   all(callback) {
     db.query(`
-      SELECT *
+      SELECT chefs.*, count(recipes) AS total_recipes
       FROM chefs
-      ORDER BY chefs.name`, (error, results) => {
+      LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
+      GROUP BY chefs.id
+      ORDER BY total_recipes DESC`, (error, results) => {
       if(error) throw `Erro no banco de dados! ${error}`
       
       callback(results.rows)
@@ -32,7 +34,13 @@ module.exports = {
     })
   },
   find(id, callback) {
-    db.query(`SELECT * FROM chefs WHERE id = $1`, [id], (error, results) => {
+    db.query(`
+      SELECT chefs.*, count(recipes) AS total_recipes
+      FROM chefs
+      LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
+      WHERE chefs.id = $1
+      GROUP BY chefs.id
+    `, [id], (error, results) => {
       if(error) throw `Erro no banco de dados! ${error}`
 
       callback(results.rows[0])
@@ -63,6 +71,19 @@ module.exports = {
       if(error) throw `Erro no banco de dados! ${error}`
 
       return callback()
+    })
+  },
+  chefRecipes(id, callback) {
+    db.query(`
+      SELECT recipes.*, chefs.name AS chef_name
+      FROM recipes
+      LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
+      WHERE recipes.chef_id = $1
+      ORDER BY recipes.title
+    `, [id], (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+
+      callback(results.rows)
     })
   }
 }

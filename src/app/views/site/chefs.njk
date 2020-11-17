@@ -22,7 +22,14 @@
 
           <div class="chef-info">
             <p>{{ chef.name }}</p>
-            <span>3 receitas</span>
+            <span>
+              {{ chef.total_recipes }}
+              {% if chef.total_recipes > 1 %}
+                receitas
+              {% else %}
+                receita
+              {% endif %}
+            </span>
           </div>
         </div>
       {% endfor %}

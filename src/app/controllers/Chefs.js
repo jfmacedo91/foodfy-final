@@ -14,7 +14,7 @@ module.exports = {
     Chef.find(req.params.id, chef => {
       if(!chef) return res.send('Chef não encontrado!')
 
-      Recipe.all(recipes => {
+      Chef.chefRecipes(chef.id, recipes => {
         return res.render('admin/chefs/show', { chef, recipes })
       })
     })

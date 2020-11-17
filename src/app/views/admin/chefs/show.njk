@@ -21,11 +21,30 @@
 
     <img src="{{ chef.avatar_url }}" alt="imagem de {{ chef.name }}">
     <h1 class="title">{{ chef.name }}</h1>
-    <span class="author">4 receitas</span>
+    <span class="author">
+      {{ chef.total_recipes }}
+      {% if chef.total_recipes > 1 %}
+        receitas
+      {% else %}
+        receita
+      {% endif %}
+    </span>
 
     <section class="chef-recipes">
       <h2>Receitas</h2>
 
-      {% include "../parts/recipes.njk" %}
+      <div class="recipes">
+        {% for recipe in recipes %}
+          <div class="recipe">
+            <img src="{{ recipe.image }}" alt="image de {{ recipe.title }}">
+
+            <div class="recipe-info">
+              <p>{{ recipe.title }}</p>
+              <span>por {{ recipe.chef_name }}</span>
+              <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
     </section>
 {% endblock %}
