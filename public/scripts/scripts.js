@@ -1,3 +1,4 @@
+//Menu ativo
 const currentPage = location.pathname
 const menuItens = document.querySelectorAll('header nav a')
 
@@ -7,6 +8,7 @@ for(item of menuItens) {
   }
 }
 
+//Mostrar e ocultar informações
 if(!currentPage.includes('admin')) {
   const informations = document.querySelectorAll('.information')
   
@@ -23,6 +25,8 @@ if(!currentPage.includes('admin')) {
   }
 }
 
+
+//Addicionar campos
 if(currentPage.includes('create') || currentPage.includes('edit')) {
   document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
   
@@ -48,5 +52,18 @@ if(currentPage.includes('create') || currentPage.includes('edit')) {
   
     newField.children[0].value = ''
     preparation.appendChild(newField)
+  }
+}
+
+const PhotoUpload = {
+  handleFileInput(event) {
+    const { files: fileList } = event.target
+    
+    if(fileList.length > 1) {
+      alert("Selecione no máximo 1 foto!")
+
+      event.precentDefault()
+      return
+    }
   }
 }

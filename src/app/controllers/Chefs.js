@@ -1,4 +1,3 @@
-const Recipe = require('../models/Recipe')
 const Chef = require('../models/Chef')
 
 module.exports = {
@@ -53,8 +52,16 @@ module.exports = {
     })
   },
   delete(req, res) {
-    Chef.delete(req.body.id, () => {
-      res.redirect(`/admin/chefs`)
+    Chef.find(req.body.id, chef => {
+      if(chef.total_recipes == 1) {
+        res.send(`O chef não pode ser excluido, pois tem 1 receita cadastrada!`)
+      } else if(chef.total_recipes > 1) {
+        res.send(`O chef não pode ser excluido, pois tem ${chef.total_recipes} receitas cadastradas!`)
+      } else {
+        Chef.delete(chef.id, () => {
+          res.redirect(`/admin/chefs`)
+        })
+      }
     })
   }
 }
