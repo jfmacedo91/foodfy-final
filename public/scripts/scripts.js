@@ -8,6 +8,41 @@ for(item of menuItens) {
   }
 }
 
+const PhotosUpload = {
+  handleChefAvatar(event, uploadLimit) {
+    const { files: fileList } = event.target
+
+    if(fileList.length > uploadLimit) {
+      if(uploadLimit == 1) {
+        alert(`Envie apenas ${uploadLimit} foto!`)
+      } else {
+        alert(`Envie apenas ${uploadLimit} fotos!`)
+      }
+      event.preventDedault()
+      return
+    }
+
+    Array.from(fileList).forEach(file => {
+      const reader = new FileReader()
+
+      reader.onload = () => {
+        const image = new Image()
+        image.src = String(reader.result)
+
+        const container = document.createElement('div')
+
+        container.classList.add('photo')
+        container.onclick = () => alert('remover foto')
+        container.appendChild(image)
+
+        document.querySelector('#photos-preview').appendChild(container)
+      }
+
+      reader.readAsDataURL(file)
+    })
+  }
+}
+
 //Mostrar e ocultar informações
 if(!currentPage.includes('admin')) {
   const informations = document.querySelectorAll('.information')
@@ -24,7 +59,6 @@ if(!currentPage.includes('admin')) {
     })
   }
 }
-
 
 //Addicionar campos
 if(currentPage.includes('create') || currentPage.includes('edit')) {
@@ -52,18 +86,5 @@ if(currentPage.includes('create') || currentPage.includes('edit')) {
   
     newField.children[0].value = ''
     preparation.appendChild(newField)
-  }
-}
-
-const PhotoUpload = {
-  handleFileInput(event) {
-    const { files: fileList } = event.target
-    
-    if(fileList.length > 1) {
-      alert("Selecione no máximo 1 foto!")
-
-      event.precentDefault()
-      return
-    }
   }
 }

@@ -6,12 +6,11 @@
 <div class="input-container">
   <label for="avatar_url">Avatar</label>
   {% if chef.avatar_url %}
-    <input type="url" name="avatar_url" id="avatar_url" value="{{ chef.avatar_url }}" placeholder="http://">
+    <input type="url" name="avatar_url" id="avatar_url" value="{{ chef.avatar_url }}" placeholder="http://" disabled>
   {% endif %}
   <div class="photos-upload">
     <label for="photo" class="button action-button">Enviar Avatar</label>
-    <input type="file" name="photo" id="photo">
-    <div class="photos-preview"></div>
+    <input type="file" name="photo" id="photo" accept="image/*" onchange="PhotosUpload.handleChefAvatar(event)">
+    <div id="photos-preview"></div>
   </div>
 </div>
-
