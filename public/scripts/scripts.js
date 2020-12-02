@@ -9,8 +9,13 @@ for(item of menuItens) {
 }
 
 const PhotosUpload = {
+  preview: document.querySelector('#photos-preview'),
+  files: [],
+  input: '',
   handleChefAvatar(event, uploadLimit) {
     const { files: fileList } = event.target
+    const { preview } = PhotosUpload
+    PhotosUpload.input = event.target
 
     if(fileList.length > uploadLimit) {
       if(uploadLimit == 1) {
@@ -18,28 +23,70 @@ const PhotosUpload = {
       } else {
         alert(`Envie apenas ${uploadLimit} fotos!`)
       }
-      event.preventDedault()
+      event.preventDefault()
+      return
+    }
+
+    const photosContainer = []
+    preview.childNodes.forEach(item => {
+      if(item.classList && item.classList.value == 'photo')
+        photosContainer.push(item)
+    })
+
+    const totalPhotos = fileList.length + photosContainer.length
+    if(totalPhotos > uploadLimit) {
+      alert('Você atingiu o limite maximo de fotos')
+      event.preventDefault()
       return
     }
 
     Array.from(fileList).forEach(file => {
-      const reader = new FileReader()
+      PhotosUpload.files.push(file)
 
+      const reader = new FileReader()
       reader.onload = () => {
         const image = new Image()
         image.src = String(reader.result)
 
-        const container = document.createElement('div')
-
-        container.classList.add('photo')
-        container.onclick = () => alert('remover foto')
-        container.appendChild(image)
-
-        document.querySelector('#photos-preview').appendChild(container)
+        const container = PhotosUpload.getContainer(image)
+        PhotosUpload.preview.appendChild(container)
       }
 
       reader.readAsDataURL(file)
     })
+
+    PhotosUpload.input.files = PhotosUpload.getAllFiles()
+  },
+  getAllFiles() {
+    const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer()
+
+    PhotosUpload.files.forEach(file => dataTransfer.items.add(file))
+
+    return dataTransfer.files
+  },
+  getContainer(image) {
+    const container = document.createElement('div')
+    container.classList.add('photo')
+    container.onclick = PhotosUpload.removePhoto
+    container.appendChild(image)
+    container.appendChild(PhotosUpload.getRemoveButton())
+
+    return container
+  },
+  getRemoveButton() {
+    const button = document.createElement('span')
+    button.innerHTML = 'X'
+    return button
+  },
+  removePhoto(event) {
+    const photoContainer = event.target.parentNode
+    const photosArray = Array.from(PhotosUpload.preview.children)
+    const index = photosArray.indexOf(photoContainer)
+
+    PhotosUpload.files.splice(index, 1)
+    PhotosUpload.input.files = PhotosUpload.getAllFiles()
+
+    photoContainer.remove()
   }
 }
 

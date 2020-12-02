@@ -1,4 +1,20 @@
 <div class="input-container">
+  <label for="avatar_url">Imagem da receita</label>
+  <div class="photos-upload">
+    <label for="photo" class="img">+</label>
+    <input
+      id="photo"
+      type="file"
+      name="photo"
+      multiple
+      accept="image/*"
+      onchange="PhotosUpload.handleChefAvatar(event, 3)"
+    >
+    <div id="photos-preview"></div>
+  </div>
+</div>
+
+<div class="input-container">
   <label for="title">Título da receita</label>
   <input type="text" name="title" id="title" value="{{ recipe.title }}">
 </div>
@@ -13,11 +29,6 @@
       </option>
     {% endfor %}
   </select>
-</div>
-
-<div class="input-container">
-  <label for="img">Imagem da receita</label>
-  <input type="url" name="image" id="img" placeholder="http://" value="{{ recipe.image }}">
 </div>
 
 <div class="input-container">
