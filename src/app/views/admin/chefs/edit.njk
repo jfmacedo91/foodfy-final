@@ -19,7 +19,7 @@
           <button type="submit" form="form-edit" class="button action-button">Salvar chef</button>
       </div>
     </div>
-    <form id="form-edit" action="/admin/chefs?_method=PUT" method="POST">
+    <form id="form-edit" action="/admin/chefs?_method=PUT" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="id" value="{{ chef.id }}">
       {% include "./fields.njk" %}
     </form>

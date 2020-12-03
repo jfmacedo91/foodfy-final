@@ -8,8 +8,8 @@ routes.get('/create', RecipesController.create)
 routes.get('/:id', RecipesController.show)
 routes.get('/:id/edit', RecipesController.edit)
 
-routes.post('/', RecipesController.post)
-routes.put('/', RecipesController.put)
+routes.post('/', multer.array('photo', 3), RecipesController.post)
+routes.put('/', multer.array('photo', 3), RecipesController.put)
 routes.delete('/', RecipesController.delete)
 
 module.exports = routes

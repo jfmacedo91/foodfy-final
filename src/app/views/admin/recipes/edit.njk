@@ -19,7 +19,7 @@
           <button type="submit" form="form-edit" class="button action-button">Salvar Receita</button>
         </div>
       </div>
-    <form id="form-edit" action="/admin/recipes?_method=PUT" method="POST">
+    <form id="form-edit" action="/admin/recipes?_method=PUT" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="id" value="{{ recipe.id }}">
       {% include "./fields.njk" %}
     </form>
