@@ -21,3 +21,17 @@ CREATE TABLE "chefs" (
   "avatar_url" text,
   "created_at" timestamp DEFAULT (now())
 );
+
+CREATE TABLE "recipes_files" (
+  "id" SERIAL PRIMARY KEY,
+  "name" text,
+  "path" text NOT NULL,
+  "recipe_id" int
+);
+
+CREATE TABLE "chefs_files" (
+  "id" SERIAL PRIMARY KEY,
+  "name" text,
+  "path" text NOT NULL,
+  "chef_id" int
+);

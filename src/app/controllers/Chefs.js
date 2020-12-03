@@ -1,4 +1,5 @@
 const Chef = require('../models/Chef')
+const ChefFile = require('../models/ChefFile')
 
 module.exports = {
   index(req, res) {
@@ -27,7 +28,13 @@ module.exports = {
       }
     }
 
-    Chef.create(req.body, chef => {
+    if(req.files.length == 0)
+      return res.send('Por favor, envie pelo menos uma imagem!')
+
+    Chef.create(req.body, async chef => {
+      const filesPromise = req.files.map(file => ChefFile.create({ ...file, chef_id: chef.id }))
+      await Promise.all(filesPromise)
+
       return res.redirect(`/admin/chefs/${ chef.id }`)
     })
   },

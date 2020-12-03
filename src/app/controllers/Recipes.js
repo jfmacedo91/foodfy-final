@@ -1,4 +1,5 @@
 const Recipe = require('../models/Recipe')
+const RecipeFile = require('../models/RecipeFile')
 
 module.exports = {
   index(req, res) {
@@ -34,7 +35,13 @@ module.exports = {
       }
     }
 
-    Recipe.create(req.body, recipe => {
+    if(req.files.length == 0)
+      return res.send('Por favor, envie pelo menos uma imagem!')
+
+    Recipe.create(req.body, async recipe => {
+      const filesPromise = req.files.map(file => RecipeFile.create({ ...file, recipe_id: recipe.id }))
+      await Promise.all(filesPromise)
+
       return res.redirect(`/admin/recipes/${recipe.id}`)
     })
   },

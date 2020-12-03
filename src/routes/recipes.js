@@ -1,5 +1,6 @@
 const express = require('express')
 const routes = express.Router()
+const multer = require('../app/middlewares/multer')
 
 const RecipesController = require('../app/controllers/Recipes')
 
