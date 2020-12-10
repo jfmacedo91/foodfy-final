@@ -85,5 +85,10 @@ module.exports = {
 
       callback(results.rows)
     })
+  },
+  files(id) {
+    return db.query(`
+      SELECT * FROM chefs_files WHERE chef_id = $1
+    `, [id])
   }
 }

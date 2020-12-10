@@ -11,6 +11,16 @@
   <div class="photos-upload">
     <label for="photo" class="button action-button">Enviar Avatar</label>
     <input type="file" name="photo" id="photo" accept="image/*" onchange="PhotosUpload.handleChefAvatar(event)">
-    <div id="photos-preview"></div>
+    <div id="photos-preview">
+      {% if files %}
+        {% for file in files %}
+          <div class="photo" id="{{ file.id }}">
+            <img src="{{ file.src }}" alt="{{ file.name }}">
+            <span onclick="PhotosUpload.removeOldPhoto(event)">X</span>
+          </div>
+        {% endfor %}
+        <input type="hidden" name="removed_files">
+      {% endif %}
+    </div>
   </div>
 </div>
