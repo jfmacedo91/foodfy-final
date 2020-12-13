@@ -24,9 +24,18 @@ label.img {
   margin-top: 10px;
 }
 
+.chef.photos-upload {
+  display: inline;
+  margin-top: 10px;
+}
+
 #photos-preview {
   display: flex;
   gap: 10px;
+}
+
+.chef.photos-upload #photos-preview {
+  margin-top: 15px;
 }
 
 #photos-preview .photo {

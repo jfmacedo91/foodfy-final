@@ -105,14 +105,25 @@ const PhotosUpload = {
 const ImageGallery = {
   highlight: document.querySelector('.gallery .highlight img'),
   previews: document.querySelectorAll('.gallery-preview img'),
+  lightbox: document.querySelector('.lightbox-target'),
+  lightboxHighlight: document.querySelector('.lightbox-target > img'),
+  closeLightboxButton: document.querySelector('.lightbox-close'),
   setImage(event) {
     const { target } = event
 
     ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
 
     ImageGallery.highlight.src = target.src
+    console.log(ImageGallery.highlightLightbox)
+    ImageGallery.lightboxHighlight.src = target.src
 
     target.classList.add('active')
+  },
+  openLightbox() {
+    ImageGallery.lightbox.classList.add('active')
+  },
+  closeLightbox() {
+    ImageGallery.lightbox.classList.remove('active')
   }
 }
 
