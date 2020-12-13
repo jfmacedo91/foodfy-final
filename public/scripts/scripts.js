@@ -102,6 +102,20 @@ const PhotosUpload = {
   }
 }
 
+const ImageGallery = {
+  highlight: document.querySelector('.gallery .highlight img'),
+  previews: document.querySelectorAll('.gallery-preview img'),
+  setImage(event) {
+    const { target } = event
+
+    ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
+
+    ImageGallery.highlight.src = target.src
+
+    target.classList.add('active')
+  }
+}
+
 //Mostrar e ocultar informações
 if(!currentPage.includes('admin')) {
   const informations = document.querySelectorAll('.information')

@@ -13,8 +13,14 @@ module.exports = {
     })
   },
   show(req, res) {
-    Recipe.find(req.params.id, recipe => {
-      return res.render('admin/recipes/detail', { recipe })
+    Recipe.find(req.params.id, async recipe => {
+      const results = await Recipe.files(recipe.id)
+      const files = results.rows.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+      }))
+
+      return res.render('admin/recipes/detail', { recipe, files })
     })
   },
   edit(req, res) {
@@ -22,9 +28,8 @@ module.exports = {
       recipe.information = recipe.information.replace(/<br \/>/g, '\r\n')
 
 
-      let files = await Recipe.files(recipe.id)
-      files = files.rows
-      files = files.map(file => ({
+      const results = await Recipe.files(recipe.id)
+      const files = results.rows.map(file => ({
         ...file,
         src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
       }))
@@ -38,7 +43,7 @@ module.exports = {
     const keys = Object.keys(req.body)
 
     for(key of keys) {
-      if(req.body[key] == '') {
+      if(req.body[key] == '' && key != 'removed_files' && key != 'information') {
         return res.send('Por favor, preencha todos os campos!')
       }
     }
@@ -57,7 +62,7 @@ module.exports = {
     const keys = Object.keys(req.body)
 
     for(key of keys) {
-      if(req.body[key] == '' && key != 'removed_files') {
+      if(req.body[key] == '' && key != 'removed_files' && key != 'information') {
         return res.send('Por favor, preencha todos os campos!')
       }
     }
