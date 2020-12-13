@@ -63,7 +63,7 @@ module.exports = {
 
     if(req.files.length != 0) {
       const newFilesPromise = req.files.map(file =>
-        ChefFile.create({...file, id: req.body.id}))
+        ChefFile.create({...file, chef_id: req.body.id}))
       
       await Promise.all(newFilesPromise)
     }
