@@ -1,5 +1,6 @@
 const Chef = require('../models/Chef')
 const ChefFile = require('../models/ChefFile')
+const Recipe = require('../models/Recipe')
 
 module.exports = {
   index(req, res) {
@@ -24,17 +25,30 @@ module.exports = {
     return res.render('admin/chefs/create')
   },
   show(req, res) {
-    Chef.find(req.params.id, chef => {
+    Chef.find(req.params.id, async chef => {
       if(!chef) return res.send('Chef não encontrado!')
 
-      Chef.chefRecipes(chef.id, async recipes => {
-        const results = await Chef.files(chef.id)
-        const files = results.rows.map(file => ({
-          ...file,
-          src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-        }))
+      const results = await Chef.files(chef.id)
+      const files = results.rows.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+      }))
 
-        return res.render('admin/chefs/show', { chef, recipes, files })
+      Chef.chefRecipes(chef.id, async recipes => {
+        async function getImage(recipeId) {
+          const results = await Recipe.files(recipeId)
+          const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`)
+          return files[0]
+        }
+
+        const recipesPromise = recipes.map(async recipe => {
+          recipe.image = await getImage(recipe.id)
+          return recipe
+        })
+
+        const allRecipes = await Promise.all(recipesPromise)
+
+        return res.render('admin/chefs/show', { chef, recipes: allRecipes, files })
       })
     })
   },
