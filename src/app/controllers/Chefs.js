@@ -3,8 +3,21 @@ const ChefFile = require('../models/ChefFile')
 
 module.exports = {
   index(req, res) {
-    Chef.all(chefs => {
-      return res.render('admin/chefs/list', { chefs })
+    Chef.all(async chefs => {
+      async function getImage(chefId) {
+        const results = await Chef.files(chefId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`)
+        return files[0]
+      }
+
+      const chefsPromise = chefs.map(async chef => {
+        chef.avatar_url = await getImage(chef.id)
+        return chef
+      })
+
+      const allChefs = await Promise.all(chefsPromise)
+
+      return res.render('admin/chefs/list', { chefs: allChefs })
     })
   },
   create(req, res) {
@@ -14,8 +27,14 @@ module.exports = {
     Chef.find(req.params.id, chef => {
       if(!chef) return res.send('Chef não encontrado!')
 
-      Chef.chefRecipes(chef.id, recipes => {
-        return res.render('admin/chefs/show', { chef, recipes })
+      Chef.chefRecipes(chef.id, async recipes => {
+        const results = await Chef.files(chef.id)
+        const files = results.rows.map(file => ({
+          ...file,
+          src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+        }))
+
+        return res.render('admin/chefs/show', { chef, recipes, files })
       })
     })
   },
