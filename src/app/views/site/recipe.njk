@@ -16,7 +16,54 @@
 {% block content %}
   <main id="page-recipe" class="container">
     <section class="spotlight">
-      <img src="{{ recipe.image }}" alt="imagem de {{ recipe.title }}">
+      
+      <div class="gallery">
+        <div class="highlight">
+          {% if not files[0] %}
+            <img src="http://placehold.it/1000x1000?text=RECEITA SEM FOTO" />
+          {% else %}
+            <img
+              src="{{ files[0].src }}"
+              alt="Foto de {{ files[0].name }}"
+              onclick="ImageGallery.openLightbox()"
+            />
+          {% endif %}
+
+          <div class="lightbox-target">
+            <img src="{{ files[0].src }}" alt="Foto de {{ files[0].name }}">
+            <div class="gallery-preview">
+              {% for file in files %}
+                <img
+                  src="{{ file.src }}"
+                  alt="imagem de {{ file.name }}"
+                  {% if loop.index0 == 0 %}
+                    class="active"
+                  {% endif %}
+                  onclick="ImageGallery.setImage(event)"
+                />
+              {% endfor %}
+              <a
+                href="#"
+                class="lightbox-close"
+                onclick="ImageGallery.closeLightbox()"
+              >X</a>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-preview">
+          {% for file in files %}
+            <img
+              src="{{ file.src }}"
+              alt="imagem de {{ file.name }}"
+              {% if loop.index0 == 0 %}
+                class="active"
+              {% endif %}
+              onclick="ImageGallery.setImage(event)"
+            />
+          {% endfor %}
+        </div>
+      </div>
+
       <h1 class="title">{{ recipe.title }}</h1>
       <span class="author">por {{ recipe.chef_name }}</span>
     </section>

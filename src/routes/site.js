@@ -1,38 +1,13 @@
 const express = require('express')
 const routes = express.Router()
 
-const Recipe = require('../app/models/Recipe')
-const Chef = require('../app/models/Chef')
+const Site = require('../app/controllers/Site')
 
-routes.get('/', (req, res) => {
-    Recipe.all(recipes => {
-      return res.render('site/index', { recipes })
-    })
-})
-routes.get('/about', (req, res) => {
-  return res.render('site/about')
-})
-routes.get('/recipes', (req, res) => {
-  Recipe.all(recipes => {
-    return res.render('site/recipes', { recipes })
-  })
-})
-routes.get('/recipes/search', (req, res) => {
-  const { filter } = req.query
-
-  Recipe.findBy(filter, recipes => {
-    return res.render('site/search', { recipes, filter })
-  })
-})
-routes.get('/recipes/:id', (req, res) => {
-  Recipe.find(req.params.id, recipe => {
-    res.render('site/recipe', { recipe })
-  })
-})
-routes.get('/chefs', (req, res) => {
-  Chef.all(chefs => {
-    return res.render('site/chefs', { chefs })
-  })
-})
+routes.get('/', Site.index)
+routes.get('/about', Site.about)
+routes.get('/recipes', Site.recipes)
+routes.get('/recipes/search', Site.search)
+routes.get('/recipes/:id', Site.recipe)
+routes.get('/chefs', Site.chefs)
 
 module.exports = routes
