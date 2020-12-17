@@ -7,19 +7,20 @@ CREATE DATABASE foodfydb;
 CREATE TABLE "recipes" (
   "id" SERIAL PRIMARY KEY,
   "title" text,
-  "image" text,
   "chef_id" int,
   "ingredients" text[],
   "preparation" text[],
   "information" text,
-  "created_at" timestamp DEFAULT (now())
+  "created_at" timestamp DEFAULT (now()),
+  "updated_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "chefs" (
   "id" SERIAL PRIMARY KEY,
   "name" text,
   "avatar_url" text,
-  "created_at" timestamp DEFAULT (now())
+  "created_at" timestamp DEFAULT (now()),
+  "updated_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "recipes_files" (
@@ -35,3 +36,16 @@ CREATE TABLE "chefs_files" (
   "path" text NOT NULL,
   "chef_id" int
 );
+
+CREATE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+	NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON recipes
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
