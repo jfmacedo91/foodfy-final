@@ -55,8 +55,21 @@ module.exports = {
   search(req, res) {
     const { filter } = req.query
   
-    Recipe.findBy(filter, recipes => {
-      return res.render('site/search', { recipes, filter })
+    Recipe.findBy(filter, async recipes => {
+      async function getImage(recipeId) {
+        const results = await Recipe.files(recipeId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`)
+        return files[0]
+      }
+
+      const recipesPromise = recipes.map(async recipe => {
+        recipe.image = await getImage(recipe.id)
+        return recipe
+      })
+
+      const allRecipes = await Promise.all(recipesPromise)
+
+      return res.render('site/search', { recipes: allRecipes, filter })
     })
   },
   chefs(req, res) {

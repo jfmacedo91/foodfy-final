@@ -7,7 +7,8 @@ module.exports = {
       FROM chefs
       LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
       GROUP BY chefs.id
-      ORDER BY total_recipes DESC`, (error, results) => {
+      ORDER BY total_recipes DESC
+      `, (error, results) => {
       if(error) throw `Erro no banco de dados! ${error}`
       
       callback(results.rows)
@@ -79,7 +80,7 @@ module.exports = {
       FROM recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
       WHERE recipes.chef_id = $1
-      ORDER BY recipes.title
+      ORDER BY recipes.created_at DESC
     `, [id], (error, results) => {
       if(error) throw `Erro no banco de dados! ${error}`
 

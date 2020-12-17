@@ -6,7 +6,7 @@ module.exports = {
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
-      ORDER BY recipes.title
+      ORDER BY recipes.created_at DESC
     `, (error, results) => {
       if(error) throw `Erro no banco de dados! ${error}`
 
@@ -61,7 +61,7 @@ module.exports = {
       FROM recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
       WHERE recipes.title ILIKE '%${filter}%'
-      ORDER BY recipes.title
+      ORDER BY recipes.created_at DESC
     `, (error, results) => {
       if(error) throw `Erro no banco de dados! ${error}`
 
