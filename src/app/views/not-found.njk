@@ -1,0 +1,25 @@
+{% extends "./layout.njk" %}
+
+{% block head %}
+  <title>Foodfy - Não encontrado</title>
+
+  {% include "./site/parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "./site/parts/header.njk" %}
+  
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <main id="page-not-found" class="container">
+    <h1>Pagina não encontrada!</h1>
+    <p>Voltar para a <a href="/">pagina inicial</a>?</p>
+  </main>
+{% endblock %}
+
+{% block footer %}
+  {% include "./site/parts/footer.njk" %}
+{% endblock %}

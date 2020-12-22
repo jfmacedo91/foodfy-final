@@ -257,3 +257,14 @@ footer p {
   color: #DC4747;
   background-color: #FFFFFF;
 }
+
+#page-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#page-not-found a:hover {
+  color: var(--color-spotlight);
+}
