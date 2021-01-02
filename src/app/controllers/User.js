@@ -1,5 +1,8 @@
 module.exports = {
-  liost() {
+  registerForm() {
+
+  },
+  list() {
 
   },
   post() {
