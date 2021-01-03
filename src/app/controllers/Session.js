@@ -5,8 +5,8 @@ module.exports = {
   forgotForm(req, res) {
     return res.render('session/forgot-password')
   },
-  resetForm() {
-
+  resetForm(req, res) {
+    return res.render('session/reset-password')
   },
   login() {
 
