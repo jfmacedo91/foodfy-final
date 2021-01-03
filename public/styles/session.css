@@ -42,7 +42,6 @@ form .input-wrapper input {
 form .buttons-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 form .buttons-wrapper a {
@@ -66,4 +65,8 @@ form .buttons-wrapper a::after {
 form .buttons-wrapper a:hover::after {
   width: 100%;
   left: 0;
+}
+
+form .buttons-wrapper button {
+  margin-left: auto;
 }
