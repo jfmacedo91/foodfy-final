@@ -11,7 +11,7 @@ const user = require('./user')
 routes.use(site)
 routes.use('/admin/recipes', recipes)
 routes.use('/admin/chefs', chefs)
-routes.use('/admin/session', session)
+routes.use('/session', session)
 routes.use('/admin/profile', profile)
 routes.use('/admin/user', user)
 
