@@ -1,0 +1,38 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+  <title>Nome*************</title>
+
+  {% include "../parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "../parts/header.njk" %}
+{% endblock %}
+
+{% block content %}
+  <main id="users-create" class="container">
+    <div class="header">
+      <h2>Bem vindo nome*********</h2>
+      <div class="actions">
+          <button type="submit" form="form-create" class="button action-button">Salvar</button>
+      </div>
+    </div>
+    <form id="form-create" action="/admin/users/list" method="POST" enctype="multipart/form-data">
+      <div class="input-wrapper">
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" placeholder="Digite o nome completo" />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Digite o email" />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="password">Senha</label>
+        <input type="password" name="password" id="password" placeholder="Digite o senha" />
+      </div>
+    </form>
+  </main>
+{% endblock %}
