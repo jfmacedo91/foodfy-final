@@ -13,7 +13,7 @@ routes.use('/admin/recipes', recipes)
 routes.use('/admin/chefs', chefs)
 routes.use('/session', session)
 routes.use('/admin/profile', profile)
-routes.use('/admin/user', user)
+routes.use('/admin/users', user)
 
 routes.get('/admin', (req, res) => {
   return res.redirect('/admin/recipes')

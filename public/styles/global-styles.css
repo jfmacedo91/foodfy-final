@@ -130,6 +130,10 @@ footer p {
   background-color: var(--color-delete);
 }
 
+.cancel-button {
+  background-color: #8A8A8A;
+}
+
 .chefs-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -1,6 +1,6 @@
 module.exports = {
-  registerForm() {
-
+  registerForm(req, res) {
+    return res.render('admin/users/create')
   },
   list() {
 

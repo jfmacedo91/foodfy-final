@@ -1,0 +1,30 @@
+#users-create form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 35px;
+  margin-top: 46px;
+}
+
+#users-create form .check-wrapper {
+  display: grid;
+  grid-template-columns: 23px 1fr;
+}
+
+#users-create form .check-wrapper input {
+  display: none;
+}
+
+#users-create form .check-wrapper span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin-top: 0;
+  border-radius: 4px;
+  border: 1px solid #DDDDDD;
+}
+
+#users-create form .check-wrapper input:checked ~ span {
+  background-color: var(--color-spotlight);
+  border-color: var(--color-spotlight);
+}
