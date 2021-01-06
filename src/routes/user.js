@@ -4,6 +4,7 @@ const routes = express.Router()
 const UserController = require('../app/controllers/User')
 
 routes.get('/register', UserController.registerForm)
+routes.get('/edit', UserController.editForm)
 
 routes.get('/', UserController.list)
 routes.post('/', UserController.post)

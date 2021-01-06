@@ -26,5 +26,5 @@
 
 #users-create form .check-wrapper input:checked ~ span {
   background-color: var(--color-spotlight);
-  border-color: var(--color-spotlight);
+  border-color: var(--color-text);
 }
