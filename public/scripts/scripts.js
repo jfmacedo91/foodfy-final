@@ -8,6 +8,29 @@ for(item of menuItens) {
   }
 }
 
+const Validate = {
+  apply(input, func) {
+    let results = Validate[func](input.value)
+    input.value = results.value
+
+    if(results.error)
+      alert(results.error)
+  },
+  isEmail(value) {
+    let error = null
+
+    const mailFormat =/^\w+([\.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+
+    if(!value.match(mailFormat))
+      error = "Email inválido"
+
+    return {
+      error,
+      value
+    }
+  }
+}
+
 const PhotosUpload = {
   preview: document.querySelector('#photos-preview'),
   files: [],

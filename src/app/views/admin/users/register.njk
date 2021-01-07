@@ -27,7 +27,13 @@
 
       <div class="input-wrapper">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Digite o email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Digite o email"
+          onblur="Validate.apply(this, 'isEmail')"
+        >
       </div>
 
       <label class="check-wrapper">

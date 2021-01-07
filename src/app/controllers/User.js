@@ -1,6 +1,6 @@
 module.exports = {
   registerForm(req, res) {
-    return res.render('admin/users/create')
+    return res.render('admin/users/register')
   },
   editForm(req, res) {
     return res.render('admin/users/edit')
