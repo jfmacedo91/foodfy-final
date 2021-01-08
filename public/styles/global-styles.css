@@ -272,3 +272,13 @@ footer p {
 #page-not-found a:hover {
   color: var(--color-spotlight);
 }
+
+/* Validate errors */
+.input-wrapper .error {
+  padding-top: 10px;
+  padding-left: 20px;
+  margin-top: -10px;
+  border-radius: 4px;
+  color: var(--color-background-body);
+  background-color: var(--color-delete)
+}
