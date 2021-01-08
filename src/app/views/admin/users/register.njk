@@ -19,7 +19,7 @@
           <a href="/admin/users/list" class="button cancel-button">Cancelar</a>
       </div>
     </div>
-    <form id="form-create" action="/admin/users/list" method="POST" enctype="multipart/form-data">
+    <form id="form-create" action="/admin/users" method="POST">
       <div class="input-wrapper">
         <label for="name">Nome</label>
         <input type="text" name="name" id="name" placeholder="Digite o nome completo" />
@@ -37,7 +37,11 @@
       </div>
 
       <label class="check-wrapper">
-        <input type="checkbox" name="admin" id="admin" />
+        <input
+          type="checkbox"
+          name="is_admin"
+          id="admin"
+        >
         <span class="checkmark"></span>
         Administrador
       </label>

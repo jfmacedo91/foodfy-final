@@ -3,11 +3,13 @@ const routes = express.Router()
 
 const UserController = require('../app/controllers/User')
 
+const Validator = require('../app/validators/user')
+
 routes.get('/register', UserController.registerForm)
 routes.get('/edit', UserController.editForm)
 
 routes.get('/', UserController.list)
-routes.post('/', UserController.post)
+routes.post('/', Validator.post, UserController.post)
 routes.put('/', UserController.put)
 routes.delete('/', UserController.delete)
 
