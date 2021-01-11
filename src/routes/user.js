@@ -6,7 +6,7 @@ const UserController = require('../app/controllers/User')
 const Validator = require('../app/validators/user')
 
 routes.get('/register', UserController.registerForm)
-routes.get('/edit', UserController.editForm)
+routes.get('/:id/edit', UserController.editForm)
 
 routes.get('/', UserController.list)
 routes.post('/', Validator.post, UserController.post)
