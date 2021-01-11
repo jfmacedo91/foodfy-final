@@ -10,6 +10,15 @@ module.exports = {
 
     return results.rows
   },
+  find(id, callback) {
+    db.query(`
+      SELECT * FROM users WHERE users.id = $1
+    `, [id], (error, results) => {
+      if(error) throw `Erro no banco de dados! ${error}`
+
+      callback(results.rows[0])
+    })
+  },
   async findOne(filters) {
     let query = `SELECT * FROM users`
 

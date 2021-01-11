@@ -22,16 +22,36 @@
     <form id="form-create" action="/admin/users/list" method="POST" enctype="multipart/form-data">
       <div class="input-wrapper">
         <label for="name">Nome</label>
-        <input type="text" name="name" id="name" placeholder="Digite o nome completo" />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Digite o nome completo"
+          value="{{ user.name }}"
+        />
       </div>
 
       <div class="input-wrapper">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Digite o email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Digite o email"
+          value="{{ user.email }}"
+          onblur="Validate.apply(this, 'isEmail')"
+        />
       </div>
 
       <label class="check-wrapper">
-        <input type="checkbox" name="admin" id="admin" />
+        <input
+          type="checkbox"
+          name="is_admin"
+          id="admin"
+          {% if user.is_admin == "true" %}
+            checked
+          {% endif %}
+        >
         <span class="checkmark"></span>
         Administrador
       </label>

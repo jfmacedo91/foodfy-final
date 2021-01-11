@@ -7,7 +7,11 @@ module.exports = {
     return res.render('admin/users/register')
   },
   editForm(req, res) {
-    return res.render('admin/users/edit')
+    User.find(req.params.id, user => {
+      user.is_admin = user.is_admin.toString()
+      
+      res.render('admin/users/edit', { user })
+    })
   },
   list() {
 
@@ -86,12 +90,10 @@ module.exports = {
     }
   },
   put() {
-    const keys = Object.keys(req.body)
-
-    for(key of keys) {
-      if(req.body[key] = '') {
-        return res.send('Por favor, preencha todos os campos!')
-      }
+    try {
+      
+    } catch (error) {
+      console.error(error);
     }
   },
   delete() {
