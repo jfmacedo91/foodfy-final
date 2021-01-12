@@ -89,11 +89,21 @@ module.exports = {
       console.error(error);
     }
   },
-  put() {
+  async put(req, res) {
     try {
-      
-    } catch (error) {
-      console.error(error);
+      let { id, name, email, is_admin } = req.body
+      is_admin = is_admin || false
+
+      await User.update(id, {
+        name,
+        email,
+        is_admin
+      })
+
+      return res.render('admin/users/edit', { user: req.body })
+    } catch(error) {
+      console.error(error)
+      return res.render('admin/user/edit', { user: req.body })
     }
   },
   delete() {
