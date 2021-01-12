@@ -106,7 +106,13 @@ module.exports = {
       return res.render('admin/user/edit', { user: req.body })
     }
   },
-  delete() {
-    
+  async delete(req, res) {
+    try {
+      await User.delete(req.body.id)
+      return res.redirect('/admin/users')
+    } catch(error) {
+      console.error(error)
+      res.render('user/edit', { user: req.body })
+    }
   }
 }
