@@ -1,7 +1,6 @@
 const User = require('../models/User')
 
 async function post(req, res, next) {
-  console.log(req.body)
   const keys = Object.keys(req.body)
 
   for(key of keys) {

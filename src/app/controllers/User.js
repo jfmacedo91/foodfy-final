@@ -83,6 +83,7 @@ module.exports = {
       };
 
       const userId = await User.create(data);
+      req.session.userId = userId
 
       return res.redirect(`/admin/users/${userId}/edit`);
     } catch (error) {
