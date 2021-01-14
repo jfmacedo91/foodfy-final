@@ -55,6 +55,7 @@ module.exports = {
             background-color: #6558C3;
             cursor: pointer;
             "
+            href="http://localhost:3000/session/login"
           >
             Acessar
           </a>
@@ -73,7 +74,7 @@ module.exports = {
       await mailer.sendMail({
         to: req.body.email,
         from: 'no-reply@foodfy.com.br',
-        subject: 'Bem-vindo ao Foodfy',
+        subject: 'Bem-vindo(a) ao Foodfy',
         html: newUserEmail
       });
 

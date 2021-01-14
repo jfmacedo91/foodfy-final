@@ -7,6 +7,7 @@
   --color-text4: #999999;
   --color-banner: #FBDFDB;
   --color-delete: #DC4747;
+  --color-success: #01B12A;
   --color-spotlight: #6558C3;
   --color-background-body: #FDFDFF;
   --color-background-footer: #EDEDEE;
@@ -281,4 +282,81 @@ footer p {
   border-radius: 4px;
   color: var(--color-background-body);
   background-color: var(--color-delete)
+}
+
+/* Alert Messages */
+.messages {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  width: 344px;
+  height: 135px;
+  border-radius: 4px;
+  opacity: 1;
+  overflow: hidden;
+  animation: hideblock 5000ms ease-out forwards;
+}
+
+.messages.error {
+  background-color: var(--color-delete);
+}
+
+.messages.success {
+  background-color: var(--color-success);
+}
+
+@keyframes hideblock {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    width: 344px;
+    height: 135px;
+    opacity: 1;
+  }
+  95% {
+    width: 344px;
+    height: 135px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.messages p {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  opacity: 1;
+  animation: hidemessage 5000ms ease-out forwards;
+}
+
+@keyframes hidemessage {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
