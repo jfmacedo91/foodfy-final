@@ -1,0 +1,36 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+  <title>Lista de usuários</title>
+
+  {% include "../parts/styles.njk" %}
+{% endblock %}
+
+{% block header %}
+  {% include "../parts/header.njk" %}
+{% endblock %}
+
+{% block content %}
+  <main id="users" class="container">
+    <div class="header">
+      <h2>Usuários</h2>
+      <a href="/admin/users/register" class="button action-button">Novo</a>
+    </div>
+
+    <div class="users-grid">
+      {% for user in users %}
+        <div class="user">
+          <h3>{{ user.name }}</h3>
+          <p>{{ user.email }}</p>
+          <div class="actions">
+            <a href="/admin/users/{{ user.id }}/edit">Editar</a>
+            <form action="/admin/users?_method=DELETE" method="POST">
+              <input type="hidden" name="id" value="{{ user.id }}" />
+              <button type="submit">Remover</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </main>
+{% endblock %}

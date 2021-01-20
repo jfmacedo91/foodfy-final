@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 
 {% block head %}
-  <title>Criar usuário</title>
+  <title>Editar {{ user.name }}</title>
 
   {% include "../parts/styles.njk" %}
 {% endblock %}
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-  <main id="users-create" class="container">
+  <main id="users-create-edit" class="container">
     <div class="header">
       <h2>Atualizar Usuário</h2>
       <div class="actions">

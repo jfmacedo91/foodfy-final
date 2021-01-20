@@ -1,20 +1,30 @@
 const User = require('../models/User')
 const crypto = require('crypto')
 const mailer = require('../../lib/mailer')
+const db = require('../../config/db')
 
 module.exports = {
   registerForm(req, res) {
     return res.render('admin/users/register')
   },
-  editForm(req, res) {
-    User.find(req.params.id, user => {
-      user.is_admin = user.is_admin.toString()
-      
-      res.render('admin/users/edit', { user })
-    })
+  async editForm(req, res) {
+    try {
+      await User.find(req.params.id, user => {
+        user.is_admin = user.is_admin.toString()
+        
+        res.render('admin/users/edit', { user })
+      })
+    } catch (error) {
+      console.error(error)
+      return res.render('admin/user/edit', {
+        user: req.body,
+        error: 'Alguma coisa deu errado! Tente novamente.'
+      })
+    }
   },
-  list() {
-
+  async list(req, res) {
+    const users = await User.all()
+    return res.render('admin/users/list', { users })
   },
   async post(req, res) {
     try {
@@ -86,9 +96,15 @@ module.exports = {
       const userId = await User.create(data);
       req.session.userId = userId
 
-      return res.redirect(`/admin/users/${userId}/edit`);
+      return res.render(`admin/users/register`, {
+        success: 'Usuário cadastrado com sucesso!'
+      });
     } catch (error) {
-      console.error(error);
+      console.error(error)
+      return res.render('admin/users/register', {
+        user: req.body,
+        error: 'Alguma coisa deu errado! Tente novamente.'
+      })
     }
   },
   async put(req, res) {
@@ -102,10 +118,16 @@ module.exports = {
         is_admin
       })
 
-      return res.render('admin/users/edit', { user: req.body })
+      return res.render('admin/users/edit', { 
+        user: req.body,
+        success: 'Usuário alterado com sucesso!'
+      })
     } catch(error) {
       console.error(error)
-      return res.render('admin/user/edit', { user: req.body })
+      return res.render('admin/user/edit', {
+        user: req.body,
+        error: 'Alguma coisa deu errado! Tente novamente.'
+      })
     }
   },
   async delete(req, res) {
@@ -114,7 +136,10 @@ module.exports = {
       return res.redirect('/admin/users')
     } catch(error) {
       console.error(error)
-      res.render('user/edit', { user: req.body })
+      res.render('user/edit', {
+        user: req.body,
+        error: 'Alguma coisa deu errado! Tente novamente.'
+      })
     }
   }
 }

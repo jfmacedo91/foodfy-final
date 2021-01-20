@@ -53,7 +53,19 @@ async function put(req, res, next) {
   }
 }
 
+async function edit(req, res, next) {
+  const { id } = req.params
+  const user = await User.findOne({ where: { id } })
+
+  if(!user) return res.render('admin/users/register', {
+    error: 'Usuário não encontrado!'
+  })
+
+  next()
+}
+
 module.exports = {
   post,
-  put
+  put,
+  edit
 }
