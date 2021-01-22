@@ -1,7 +1,6 @@
 const User = require('../models/User')
 const crypto = require('crypto')
 const mailer = require('../../lib/mailer')
-const db = require('../../config/db')
 
 module.exports = {
   registerForm(req, res) {
@@ -16,7 +15,7 @@ module.exports = {
       })
     } catch (error) {
       console.error(error)
-      return res.render('admin/user/edit', {
+      return res.render('admin/users/edit', {
         user: req.body,
         error: 'Alguma coisa deu errado! Tente novamente.'
       })
