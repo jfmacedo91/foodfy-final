@@ -10,4 +10,10 @@
       <a href="/admin/users">usuários</a>
     </nav>
   </div>
+
+  {% if user %}
+    <form action="/session/logout" method="POST">
+      <button>sair</button>
+    </form>
+  {% endif %}
 </header>

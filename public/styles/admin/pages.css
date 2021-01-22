@@ -1,4 +1,5 @@
 header {
+  position: relative;
   margin-bottom: 50px;
   background-color: var(--color-text1);
 }
@@ -33,6 +34,23 @@ header nav a.active {
 
 header nav a:last-child {
   margin-right: 0;
+}
+
+header form button {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  color: var(--color-text4);
+  background: none;
+  cursor: pointer;
+}
+
+header form button:hover {
+  color: #FFFFFF;
 }
 
 .header {

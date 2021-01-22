@@ -12,19 +12,30 @@
 
 {% block content %}
   <main id="session-login" class="container">
-    <form id="form-login" action="/admin/profile" method="GET">
+    <form id="form-login" action="/session/login" method="POST">
       <div class="header">
         <h2>Iniciar Sessão</h2>
       </div>
       <div class="fields">
         <div class="input-wrapper">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Digite seu email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Digite seu email"
+            value="{{ user.email }}"
+          />
         </div>
 
         <div class="input-wrapper">
           <label for="password">Senha</label>
-          <input type="password" name="password" id="password" placeholder="Digite sua senha" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Digite sua senha"
+          />
         </div>
 
         <div class="buttons-wrapper">

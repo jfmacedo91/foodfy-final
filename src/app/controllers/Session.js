@@ -10,11 +10,13 @@ module.exports = {
   },
   login(req, res) {
     req.session.userId = req.user.id
-    req.session.isAdmin = req.user.is_admin
+
     return res.redirect('/admin/users/profile')
   },
-  logout() {
+  logout(req, res) {
+    req.session.destroy()
 
+    return res.redirect('/session/login')
   },
   forgot() {
 
