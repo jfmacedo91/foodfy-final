@@ -5,7 +5,9 @@ const SessionController = require('../app/controllers/Session')
 
 const SessionValidator = require('../app/validators/session')
 
-routes.get('/login', SessionController.loginForm)
+const { isLoggedRedirectToProfile } = require('../app/middlewares/session')
+
+routes.get('/login', isLoggedRedirectToProfile, SessionController.loginForm)
 routes.get('/forgot-password', SessionController.forgotForm)
 routes.get('/reset-password', SessionController.resetForm)
 

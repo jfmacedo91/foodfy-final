@@ -4,13 +4,15 @@ const multer = require('../app/middlewares/multer')
 
 const RecipesController = require('../app/controllers/Recipes')
 
-routes.get('/', RecipesController.index)
-routes.get('/create', RecipesController.create)
-routes.get('/:id', RecipesController.show)
-routes.get('/:id/edit', RecipesController.edit)
+const { onlyUsers } = require('../app/middlewares/session')
 
-routes.post('/', multer.array('photo', 3), RecipesController.post)
-routes.put('/', multer.array('photo', 3), RecipesController.put)
-routes.delete('/', RecipesController.delete)
+routes.get('/', onlyUsers, RecipesController.index)
+routes.get('/create', onlyUsers, RecipesController.create)
+routes.get('/:id', onlyUsers, RecipesController.show)
+routes.get('/:id/edit', onlyUsers, RecipesController.edit)
+
+routes.post('/', onlyUsers, multer.array('photo', 3), RecipesController.post)
+routes.put('/', onlyUsers, multer.array('photo', 3), RecipesController.put)
+routes.delete('/', onlyUsers, RecipesController.delete)
 
 module.exports = routes

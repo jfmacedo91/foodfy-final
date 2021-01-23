@@ -4,13 +4,15 @@ const multer = require('../app/middlewares/multer')
 
 const ChefsController = require('../app/controllers/Chefs')
 
-routes.get('/', ChefsController.index)
-routes.get('/create', ChefsController.create)
-routes.get('/:id', ChefsController.show)
-routes.get('/:id/edit', ChefsController.edit)
+const { onlyUsers } = require('../app/middlewares/session')
 
-routes.post('/', multer.array('photo', 1), ChefsController.post)
-routes.put('/', multer.array('photo', 1), ChefsController.put)
-routes.delete('/', ChefsController.delete)
+routes.get('/', onlyUsers, ChefsController.index)
+routes.get('/create', onlyUsers, ChefsController.create)
+routes.get('/:id', onlyUsers, ChefsController.show)
+routes.get('/:id/edit', onlyUsers, ChefsController.edit)
+
+routes.post('/', onlyUsers, multer.array('photo', 1), ChefsController.post)
+routes.put('/', onlyUsers, multer.array('photo', 1), ChefsController.put)
+routes.delete('/', onlyUsers, ChefsController.delete)
 
 module.exports = routes
