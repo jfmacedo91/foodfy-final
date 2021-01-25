@@ -12,7 +12,17 @@ function isLoggedRedirectToProfile(req, res, next) {
     next()
 }
 
+function onlyAdmin(req, res, next) {
+  if(!req.session.isAdmin) {
+    req.session.error = 'Desculpe, você não tem permissão para acessar esta página!'
+    return res.redirect('/admin/users/profile')
+  }
+
+  next()
+}
+
 module.exports = {
   onlyUsers,
-  isLoggedRedirectToProfile
+  isLoggedRedirectToProfile,
+  onlyAdmin
 }

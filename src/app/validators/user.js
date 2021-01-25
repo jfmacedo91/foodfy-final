@@ -106,10 +106,22 @@ async function update(req, res, next) {
   next()
 }
 
+async function del(req, res, next) {
+  const users = await User.all()
+
+  if(req.session.userId == req.body.id) return res.render('admin/users/list', {
+    users,
+    error: 'Desculpe, você não pode apagar sua própria conta!'
+  })
+
+  next()
+}
+
 module.exports = {
   post,
   put,
   edit,
   profile,
-  update
+  update,
+  del
 }

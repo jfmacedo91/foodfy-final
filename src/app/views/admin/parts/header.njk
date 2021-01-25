@@ -11,7 +11,7 @@
     </nav>
   </div>
 
-  {% if user %}
+  {% if session.userId %}
     <form action="/session/logout" method="POST">
       <button>sair</button>
     </form>
