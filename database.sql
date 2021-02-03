@@ -8,6 +8,7 @@ CREATE TABLE "recipes" (
   "id" SERIAL PRIMARY KEY,
   "title" text,
   "chef_id" int,
+  "user_id" int,
   "ingredients" text[],
   "preparation" text[],
   "information" text,

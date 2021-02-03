@@ -13,12 +13,12 @@ module.exports = {
       callback(results.rows)
     })
   },
-  create(data, callback) {
+  create(req, data, callback) {
     const query = `
       INSERT INTO recipes(
         title,
-        image,
         chef_id,
+        user_id,
         ingredients,
         preparation,
         information
@@ -27,15 +27,17 @@ module.exports = {
     `
 
     information = data.information.replace(/\r\n/g, '<br />')
+    const userId = req.session.userId
 
     const values = [
       data.title,
-      data.image,
       data.chef,
+      userId,
       data.ingredients,
       data.preparation,
       information
     ]
+
 
     db.query(query, values, (error, results) => {
       if(error) throw `Erro no banco de dados! ${ error }`
@@ -72,12 +74,11 @@ module.exports = {
     const query = `
       UPDATE recipes SET
         title=($1),
-        image=($2),
-        chef_id=($3),
-        ingredients=($4),
-        preparation=($5),
-        information=($6)
-      WHERE id = $7
+        chef_id=($2),
+        ingredients=($3),
+        preparation=($4),
+        information=($5)
+      WHERE id = $6
       RETURNING id
     `
 
@@ -85,7 +86,6 @@ module.exports = {
 
     const values = [
       data.title,
-      data.image,
       data.chef,
       data.ingredients,
       data.preparation,

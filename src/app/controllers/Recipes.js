@@ -27,8 +27,10 @@ module.exports = {
   create(req, res) {
     try {
       Recipe.chefsSelectOptions(chefs => {
-        return res.render('admin/recipes/create', { chefs })
+        const userId = req.session.userId
+        return res.render('admin/recipes/create', { chefs, userId })
       })
+      
     } catch (error) {
       console.error(error)
     }
@@ -56,7 +58,7 @@ module.exports = {
       }))
 
       Recipe.chefsSelectOptions(chefs => {
-        res.render('admin/recipes/edit', { recipe, chefs, files })
+        res.render('admin/recipes/edit', { recipe, chefs, files, userId: req.session.userId })
       })
     })
   },
@@ -65,19 +67,35 @@ module.exports = {
 
     for(key of keys) {
       if(req.body[key] == '' && key != 'removed_files' && key != 'information') {
-        return res.send('Por favor, preencha todos os campos!')
+        return Recipe.chefsSelectOptions(chefs => {
+          res.render('admin/recipes/create', {
+            chefs,
+            userId: req.session.userId,
+            error: 'Por favor, preencha todos os campos!',
+            recipe: req.body
+          })
+        })
       }
     }
 
-    if(req.files.length == 0)
-      return res.send('Por favor, envie pelo menos uma imagem!')
+    if(req.files.length == 0) {
+      return Recipe.chefsSelectOptions(chefs => {
+        res.render('admin/recipes/create', {
+          chefs,
+          userId: req.session.userId,
+          error: 'Por favor, envie pelo menos uma imagem!',
+          recipe: req.body
+        })
+      })
+    } else {
+      Recipe.create(req, req.body, async recipe => {
+        const filesPromise = req.files.map(file => RecipeFile.create({ ...file, recipe_id: recipe.id }))
+        await Promise.all(filesPromise)
+  
+        return res.redirect(`/admin/recipes/${recipe.id}`)
+      })
+    }
 
-    Recipe.create(req.body, async recipe => {
-      const filesPromise = req.files.map(file => RecipeFile.create({ ...file, recipe_id: recipe.id }))
-      await Promise.all(filesPromise)
-
-      return res.redirect(`/admin/recipes/${recipe.id}`)
-    })
   },
   async put(req, res) {
     const keys = Object.keys(req.body)
