@@ -3,27 +3,35 @@ const RecipeFile = require('../models/RecipeFile')
 
 module.exports = {
   index(req, res) {
-    Recipe.all(async recipes => {
-      async function getImage(recipeId) {
-        const results = await Recipe.files(recipeId)
-        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`)
-        return files[0]
-      }
+    try {
+      Recipe.all(async recipes => {
+        async function getImage(recipeId) {
+          const results = await Recipe.files(recipeId)
+          const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`)
+          return files[0]
+        }
 
-      const recipesPromise = recipes.map(async recipe => {
-        recipe.image = await getImage(recipe.id)
-        return recipe
+        const recipesPromise = recipes.map(async recipe => {
+          recipe.image = await getImage(recipe.id)
+          return recipe
+        })
+
+        const allRecipes = await Promise.all(recipesPromise)
+
+        return res.render('admin/recipes/list', { recipes: allRecipes })
       })
-
-      const allRecipes = await Promise.all(recipesPromise)
-
-      return res.render('admin/recipes/list', { recipes: allRecipes })
-    })
+    } catch (error) {
+      console.error(error)
+    }
   },
   create(req, res) {
-    Recipe.chefsSelectOptions(chefs => {
-      return res.render('admin/recipes/create', { chefs })
-    })
+    try {
+      Recipe.chefsSelectOptions(chefs => {
+        return res.render('admin/recipes/create', { chefs })
+      })
+    } catch (error) {
+      console.error(error)
+    }
   },
   show(req, res) {
     Recipe.find(req.params.id, async recipe => {
@@ -100,9 +108,21 @@ module.exports = {
       return res.redirect(`/admin/recipes/${recipe.id}`)
     })
   },
-  delete(req, res) {
-    Recipe.delete(req.body.id, () => {
+  async delete(req, res) {
+    try {
+      let results = await Recipe.files(req.body.id)
+      const files = results.rows
+      const deletedFilesPromise = files.map(file => {
+        RecipeFile.delete(file.id)
+      })
+
+      await Promise.all(deletedFilesPromise)
+      Recipe.delete(req.body.id, () => {
+      })
+
       return res.redirect('/admin/recipes')
-    })
+    } catch (error) {
+      console.error(error)
+    }
   }
 }

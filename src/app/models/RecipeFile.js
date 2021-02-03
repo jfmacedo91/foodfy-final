@@ -24,7 +24,11 @@ module.exports = {
     try {
       const result = await db.query(`SELECT * FROM recipes_files WHERE id = $1`, [id])
       const file = result.rows[0]
-      fs.unlinkSync(file.path)
+      if(file.path.includes('placeholder')) {
+        console.log('Placeholder não será deletado!')
+      } else {
+        fs.unlinkSync(file.path)
+      }
 
       return db.query(`
         DELETE FROM recipes_files WHERE id = $1

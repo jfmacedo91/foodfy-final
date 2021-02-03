@@ -121,9 +121,23 @@ module.exports = {
       } else if(chef.total_recipes > 1) {
         res.send(`O chef não pode ser excluido, pois tem ${chef.total_recipes} receitas cadastradas!`)
       } else {
-        Chef.delete(chef.id, () => {
-          res.redirect(`/admin/chefs`)
-        })
+        try {
+          Chef.delete(chef.id, async () => {
+            let results = await Chef.files(req.body.id)
+            const files = results.rows
+            const deletedFilesPromise = files.map(file => {
+              ChefFile.delete(file.id)
+            })
+
+            await Promise.all(deletedFilesPromise)
+            Chef.delete(req.body.id, () => {
+            })
+
+            res.redirect(`/admin/chefs`)
+          })
+        } catch (error) {
+          console.error(error)
+        }
       }
     })
   }
