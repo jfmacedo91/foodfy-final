@@ -12,7 +12,8 @@
   </div>
 
   {% if session.userId %}
-    <form action="/session/logout" method="POST">
+    <form id="form-logout" action="/session/logout" method="POST">
+      <a href="/admin/users/profile">Perfil</a>
       <button>sair</button>
     </form>
   {% endif %}

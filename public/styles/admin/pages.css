@@ -22,6 +22,7 @@ header nav a {
   font-weight: 700;
   text-transform: uppercase;
   color: var(--color-text4);
+  transition: 200ms;
 }
 
 header nav a:hover {
@@ -36,10 +37,28 @@ header nav a:last-child {
   margin-right: 0;
 }
 
-header form button {
+header form {
   position: absolute;
   top: 30px;
   right: 50px;
+  display: flex;
+  gap: 50px;
+}
+
+header form a {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text4);
+  cursor: pointer;
+  transition: 200ms;
+}
+
+header form a:hover {
+  color: #FFFFFF;
+}
+
+header form button {
   font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
@@ -47,6 +66,7 @@ header form button {
   color: var(--color-text4);
   background: none;
   cursor: pointer;
+  transition: 200ms;
 }
 
 header form button:hover {
