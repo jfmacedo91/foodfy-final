@@ -11,7 +11,14 @@
 </p>
 
 <h1 align="center">
-	<img src="https://media.giphy.com/media/qcbj4sknTnznwHbWCk/giphy.gif" />
+	<span>
+		<p>Site</p>
+		<img src="https://media.giphy.com/media/k3kha2nr5K7vY6LFFj/giphy.gif" />
+	</span>
+	<span>
+		<p>Área Restrita</p>
+		<img src="https://media.giphy.com/media/Q1G3bOPXX2IzXixR5h/giphy.gif" />
+	</span>
 </h1>
 
 ## Sobre
@@ -59,7 +66,20 @@ Para rodar o projeto será necessário criar o banco de dadps as tabelas, para i
 
 Para realizar a conexão com o banco de dados é necessário criar um arquivo `.env` na raiz do projeto e inserir suas credenciais
 ```zsh
-variais
+#Usuário do banco de dados
+DB_USER=''
+#Senha do banco de dados
+DB_PASSWORD=''
+#Porta do banco de dados
+DB_PORT=''
+#Nome de banco de daods
+DB_DATABASE=''
+#Senha para as sessões (Pode ser qualqueer coisa)
+SESSION_SECRET=''
+#Usuário para conexão com o mailtrap
+MAILER_USER='eb78ac73e741b6'
+#Senha para conexão com o mailtrap
+MAILER_PASS='5a38c5819645d8'
 ```
 
 Após realizar todos os passos anterios será possivel popular o banco de dados com o comando:
