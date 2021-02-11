@@ -19,7 +19,6 @@ CREATE TABLE "recipes" (
 CREATE TABLE "chefs" (
   "id" SERIAL PRIMARY KEY,
   "name" text,
-  "avatar_url" text,
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT (now())
 );
@@ -51,6 +50,16 @@ BEFORE UPDATE ON recipes
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON chefs
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
 CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -72,3 +81,17 @@ WITH (OIDS=FALSE);
 ALTER TABLE "session" 
 ADD CONSTRAINT "session_pkey" 
 PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+-- to run seeds
+DELETE FROM chefs;
+DELETE FROM chefs_files;
+DELETE FROM recipes;
+DELETE FROM recipes_files;
+DELETE FROM users;
+
+-- restart sequence auto_increment from tables ids
+ALTER SEQUENCE chefs_id_seq RESTART WITH 1;
+ALTER SEQUENCE chefs_files_id_seq RESTART WITH 1;
+ALTER SEQUENCE recipes_id_seq RESTART WITH 1;
+ALTER SEQUENCE recipes_files_id_seq RESTART WITH 1;
+ALTER SEQUENCE users_id_seq RESTART WITH 1;

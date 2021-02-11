@@ -1,41 +1,22 @@
 const db = require('../../config/db')
-const fs = require('fs')
+const Base = require('./Base')
+
+Base.init({ table: 'chefs_files' })
 
 module.exports = {
-  create({ filename, path, chef_id }) {
-    const query = `
-      INSERT INTO chefs_files (
-        name,
-        path,
-        chef_id
-      ) VALUES ($1, $2, $3)
-      RETURNING id
-    `
+  ...Base,
+  async findOne(filters) {
+    let query = `SELECT * FROM chefs_files`
 
-    const values = [
-      filename,
-      path,
-      chef_id
-    ]
+    Object.keys(filters).map(key => {
+      query += ` ${key}`
 
-    db.query(query, values)
-  },
-  async delete(id) {
-    try {
-      const result = await db.query(`SELECT * FROM chefs_files WHERE id = $1`, [id])
-      const file = result.rows[0]
-      if(file.path.includes('placeholder')) {
-        console.log('Placeholder não será deletado!')
-      } else {
-        fs.unlinkSync(file.path)
-      }
-      
-      return db.query(`
-        DELETE FROM chefs_files WHERE id = $1
-      `, [id])
-    } catch(err) {
-      console.error(err)
-    }
+      Object.keys(filters[key]).map(field => {
+        query += ` ${field} = '${filters[key][field]}'`
+      })
+    })
 
+    const results = await db.query(query)
+    return results.rows[0]
   }
 }

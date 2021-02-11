@@ -183,30 +183,24 @@ if(!currentPage.includes('admin')) {
 }
 
 //Addicionar campos
-if(currentPage.includes('create') || currentPage.includes('edit')) {
-  document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
+function addIngredient() {
+  const ingredients = document.querySelector("#ingredients")
+  const fieldContainer = document.querySelectorAll('.ingredient')
+  const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
+
+  if(newField.children[0].value == '') return false
+
+  newField.children[0].value = ''
+  ingredients.appendChild(newField)
+}
   
-  function addIngredient() {
-    const ingredients = document.querySelector("#ingredients")
-    const fieldContainer = document.querySelectorAll('.ingredient')
-    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
-  
-    if(newField.children[0].value == '') return false
-  
-    newField.children[0].value = ''
-    ingredients.appendChild(newField)
-  }
-  
-  document.querySelector('.add-step').addEventListener('click', addStep)
-  
-  function addStep() {
-    const preparation = document.querySelector("#preparation")
-    const fieldContainer = document.querySelectorAll('.step')
-    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
-  
-    if(newField.children[0].value == '') return false
-  
-    newField.children[0].value = ''
-    preparation.appendChild(newField)
-  }
+function addStep() {
+  const preparation = document.querySelector("#preparation")
+  const fieldContainer = document.querySelectorAll('.step')
+  const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
+
+  if(newField.children[0].value == '') return false
+
+  newField.children[0].value = ''
+  preparation.appendChild(newField)
 }

@@ -107,7 +107,7 @@ async function update(req, res, next) {
 }
 
 async function del(req, res, next) {
-  const users = await User.all()
+  const users = await User.findAll()
 
   if(req.session.userId == req.body.id) return res.render('admin/users/list', {
     users,

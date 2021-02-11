@@ -1,5 +1,7 @@
-const User = require('../models/User')
 const crypto = require('crypto')
+const { hash } = require('bcryptjs')
+
+const User = require('../models/User')
 const mailer = require('../../lib/mailer')
 
 module.exports = {
@@ -8,11 +10,10 @@ module.exports = {
   },
   async editForm(req, res) {
     try {
-      await User.find(req.params.id, user => {
-        user.is_admin = user.is_admin.toString()
-        
-        res.render('admin/users/edit', { user })
-      })
+      const user = await User.findOne({ where: { id: req.params.id } })
+      user.is_admin = user.is_admin.toString()
+
+      res.render('admin/users/edit', { user })
     } catch (error) {
       console.error(error)
       return res.render('admin/users/edit', {
@@ -22,13 +23,18 @@ module.exports = {
     }
   },
   async list(req, res) {
-    const users = await User.all()
+    const users = await User.findAll()
     return res.render('admin/users/list', { users })
   },
   async post(req, res) {
     try {
-      const password = crypto.randomBytes(4).toString('hex')
-      const newUserEmail = `
+      const userPassword = crypto.randomBytes(4).toString('hex')
+
+      await mailer.sendMail({
+        to: req.body.email,
+        from: 'no-reply@foodfy.com.br',
+        subject: 'Bem-vindo(a) ao Foodfy',
+        html: `
         <div
           style="
             font-family: sans-serif;
@@ -45,7 +51,7 @@ module.exports = {
 
           <p>Essas são suas credenciais para acessar a area administrativa:</p>
           <p>Login: ${req.body.email}</p>
-          <p>Senha: ${password}</p>
+          <p>Senha: ${userPassword}</p>
 
           <br />
 
@@ -79,13 +85,9 @@ module.exports = {
           </p>
         </div>
       `
-
-      await mailer.sendMail({
-        to: req.body.email,
-        from: 'no-reply@foodfy.com.br',
-        subject: 'Bem-vindo(a) ao Foodfy',
-        html: newUserEmail
       });
+
+      const password = await hash(userPassword, 8)
 
       const data = {
         ...req.body,

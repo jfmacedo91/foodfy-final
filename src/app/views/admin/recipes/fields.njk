@@ -30,8 +30,8 @@
 </div>
 
 <div class="input-container">
-  <label for="chef">Chef</label>
-  <select name="chef" id="chef">
+  <label for="chef_id">Chef</label>
+  <select name="chef_id" id="chef_id">
     <option value="" disabled selected hidden>Selecione um chef</option>
     {% for chef in chefs %}
       <option value="{{ chef.id }}" {% if recipe.chef_id == chef.id %}selected{% endif %}>
@@ -56,7 +56,13 @@
           </div>
         {% endif %}
     </div>
-    <button type="button" class="add-field add-ingredient">Adicionar novo ingrediente</button>
+    <button
+      type="button"
+      class="add-field add-ingredient"
+      onclick="addIngredient()"
+    >
+      Adicionar novo ingrediente
+    </button>
 </div>
 
 <div class="input-container preparation">
@@ -74,7 +80,13 @@
           </div>
       {% endif %}
     </div>
-    <button type="button" class="add-field add-step">Adicionar novo passo</button>
+    <button
+      type="button"
+      class="add-field add-step"
+      onclick="addStep()"
+    >
+      Adicionar novo passo
+    </button>
 </div>
 
 <div class="input-container">
