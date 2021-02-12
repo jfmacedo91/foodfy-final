@@ -53,7 +53,7 @@ Você vai precisar também ter uma conta do [mailtrap](https://mailtrap.io/).
 
 ```zsh
 #No terminal rode o seguinte comando
-$ git clone https://github.com/JFMacedo/foodfy-final.git
+$ git clone http://github.com/JFMacedo/foodfy-final.git
 
 #Entre na pasta do projeto
 $ cd foodfy-final
@@ -77,9 +77,9 @@ DB_DATABASE=''
 #Senha para as sessões (Pode ser qualqueer coisa)
 SESSION_SECRET=''
 #Usuário para conexão com o mailtrap
-MAILER_USER='eb78ac73e741b6'
+MAILER_USER=''
 #Senha para conexão com o mailtrap
-MAILER_PASS='5a38c5819645d8'
+MAILER_PASS=''
 ```
 
 Após realizar todos os passos anterios será possivel popular o banco de dados com o comando:
@@ -89,12 +89,12 @@ $ node seed.js
 
 Agora é só rodar o projeto:
 ```zsh
-$ npm run dev
+$ npm start
 ```
 
 ## Acesso a área restrita
 
-Todos os usuários criados no `seed.js` são administrativos, então todos tem acesso totas a parte administrativa, e senha de acesso para eles é padrão `1111`.
+Todos os usuários criados no `seed.js` são administrativos, então todos tem acesso totas a parte administrativa, e senha de acesso para eles é padrão `111`.
 
 ---
 
