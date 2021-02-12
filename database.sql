@@ -55,11 +55,6 @@ BEFORE UPDATE ON chefs
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
-CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON users
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_set_timestamp();
-
 CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -71,6 +66,11 @@ CREATE TABLE "users" (
   "created_at" TIMESTAMP DEFAULT (now()),
   "updated_at" TIMESTAMP DEFAULT (now())
 );
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
 
 CREATE TABLE "session" (
   "sid" varchar NOT NULL COLLATE "default",
