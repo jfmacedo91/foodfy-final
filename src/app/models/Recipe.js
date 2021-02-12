@@ -37,6 +37,7 @@ module.exports = {
   async chefsSelectOptions() {
     const results = await db.query(`
       SELECT id, name FROM chefs
+      ORDER BY name
     `)
 
     return results.rows
