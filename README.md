@@ -11,14 +11,8 @@
 </p>
 
 <div align="center">
-	<span>
-		<p>Site</p>
-		<img src="https://media.giphy.com/media/k3kha2nr5K7vY6LFFj/giphy.gif" />
-	</span>
-	<span>
-		<p>Área Restrita</p>
-		<img src="https://media.giphy.com/media/Q1G3bOPXX2IzXixR5h/giphy.gif" />
-	</span>
+	<p>Site</p>
+	<img src="https://media.giphy.com/media/k3kha2nr5K7vY6LFFj/giphy.gif" />
 </div>
 
 ## Sobre
@@ -93,6 +87,10 @@ $ npm run dev
 ```
 
 ## Acesso a área restrita
+
+<div align="center">
+	<img src="https://media.giphy.com/media/Q1G3bOPXX2IzXixR5h/giphy.gif" />
+</div>
 
 Todos os usuários criados no `seed.js` são administrativos, então todos tem acesso total a parte administrativa, a senha padrão de acesso para eles é `111`.
 
