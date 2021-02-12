@@ -13,6 +13,14 @@ module.exports = {
       const user = await User.findOne({ where: { id: req.params.id } })
       user.is_admin = user.is_admin.toString()
 
+      if(req.session.success) {
+        res.render('admin/users/edit', {
+          user,
+          success: req.session.success
+        })
+        req.session.success = ''
+      }
+
       res.render('admin/users/edit', { user })
     } catch (error) {
       console.error(error)
@@ -24,6 +32,14 @@ module.exports = {
   },
   async list(req, res) {
     const users = await User.findAll()
+
+    if(req.session.success) {
+      res.render('admin/users/list', {
+        users,
+        success: req.session.success
+      })
+    }
+
     return res.render('admin/users/list', { users })
   },
   async post(req, res) {
@@ -94,9 +110,8 @@ module.exports = {
         password
       };
 
-      const userId = await User.create(data);
-      req.session.userId = userId
-
+      await User.create(data);
+      
       return res.render(`admin/users/register`, {
         success: 'Usuário cadastrado com sucesso!'
       });
@@ -134,6 +149,9 @@ module.exports = {
   async delete(req, res) {
     try {
       await User.delete(req.body.id)
+
+      req.session.success = 'Usuário exluído com sucesso!'
+
       return res.redirect('/admin/users')
     } catch(error) {
       console.error(error)

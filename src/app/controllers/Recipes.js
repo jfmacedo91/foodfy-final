@@ -21,6 +21,15 @@ module.exports = {
   
       const allRecipes = await Promise.all(recipesPromise)
   
+      if(req.session.success) {
+        res.render('admin/recipes/list', {
+          recipes: allRecipes,
+          success: req.session.success
+        })
+        req.session.success = ''
+        return
+      }
+
       return res.render('admin/recipes/list', { recipes: allRecipes })
     } catch (error) {
       console.error(error);
@@ -67,7 +76,9 @@ module.exports = {
 
       await Promise.all(filesPromise)
 
-      return res.redirect(`/admin/recipes/${recipeId}`)
+      req.session.success = 'Recita cadastrada com sucesso!'
+
+      return res.redirect(`/admin/recipes`)
     } catch (error) {
       console.error(error);
     }
@@ -169,6 +180,8 @@ module.exports = {
 
       await Promise.all(deletedFilesPromise)
       await Recipe.delete(req.body.id)
+
+      req.session.success = 'Receita excluída com sucesso!'
 
       return res.redirect('/admin/recipes')
     } catch (error) {

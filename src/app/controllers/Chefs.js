@@ -22,6 +22,15 @@ module.exports = {
 
       const allChefs = await Promise.all(chefsPromise)
 
+      if(req.session.success) {
+        res.render('admin/chefs/list', {
+          chefs: allChefs,
+          success: req.session.success
+        })
+        req.session.success = ''
+        return
+      }
+
       return res.render('admin/chefs/list', { chefs: allChefs })
     } catch (error) {
       console.error(error);
@@ -42,7 +51,9 @@ module.exports = {
         chef_id: chefId
       })
 
-      return res.redirect(`/admin/chefs/${ chefId }`)
+      req.session.success = 'Chef cadastrado com sucesso!'
+
+      return res.redirect(`/admin/chefs`)
     } catch (error) {
       console.error(error);
     }
@@ -145,15 +156,17 @@ module.exports = {
         await Chef.delete(chef.id)
 
         const chefFile = await Chef.files(chef.id)
-        ChefFile.delete(chefFile[0].id)
-
+        
         const file = await ChefFile.findOne({ where: { id: chefFile[0].id } })
         if(file.path == 'public/images/chef-placeholder.png') {
           console.log('Placeholders não serão deletados');
         } else {
+          ChefFile.delete(chefFile[0].id)
           fs.unlinkSync(file.path)
         }
       }
+
+      req.session.success = 'Chef Excluído com sucesso!'
 
       res.redirect(`/admin/chefs`)
     } catch (error) {

@@ -4,6 +4,15 @@ module.exports = {
   async index(req, res) {
     const { user } = req
 
+    if(req.session.error) {
+      res.render('admin/users/profile', {
+        user,
+        error: req.session.error
+      })
+      req.session.error = ''
+      return
+    }
+
     return res.render('admin/users/profile', { user })
   },
   async put(req, res) {
