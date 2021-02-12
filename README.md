@@ -10,7 +10,7 @@
 	<img alt="License" src="https://img.shields.io/badge/status-Conclu%C3%ADdo-6558C3?style=plastic" />
 </p>
 
-<h1 align="center">
+<div align="center">
 	<span>
 		<p>Site</p>
 		<img src="https://media.giphy.com/media/k3kha2nr5K7vY6LFFj/giphy.gif" />
@@ -19,11 +19,11 @@
 		<p>Área Restrita</p>
 		<img src="https://media.giphy.com/media/Q1G3bOPXX2IzXixR5h/giphy.gif" />
 	</span>
-</h1>
+</div>
 
 ## Sobre
 
-O projeto **Foodfy** é um site de receitas que foi criado como desafio do curso **Bootcamp LaunchBase** com o intuito de colocarmos em prática todo conteúdo estudado durante o curso.
+O projeto **Foodfy** é um site de receitas que foi criado como desafio do curso **Bootcamp LaunchBase** da **Rocketseat** com o intuito de colocar em prática todo conteúdo estudado durante o curso.
 
 ## Tecnologias utilizadas
 
@@ -64,7 +64,7 @@ $ npm install
 
 Para rodar o projeto será necessário criar o banco de dadps as tabelas, para isso utilize o arquivo `database.sql` que está na raiz do projeto.
 
-Para realizar a conexão com o banco de dados é necessário criar um arquivo `.env` na raiz do projeto e inserir suas credenciais
+Para realizar a conexão com o banco de dados e o mailtrap é necessário criar um arquivo `.env` na raiz do projeto e inserir suas credenciais entre as aspas do exemplo abaixo:
 ```zsh
 #Usuário do banco de dados
 DB_USER=''
@@ -89,12 +89,12 @@ $ node seed.js
 
 Agora é só rodar o projeto:
 ```zsh
-$ npm start
+$ npm run dev
 ```
 
 ## Acesso a área restrita
 
-Todos os usuários criados no `seed.js` são administrativos, então todos tem acesso totas a parte administrativa, e senha de acesso para eles é padrão `111`.
+Todos os usuários criados no `seed.js` são administrativos, então todos tem acesso total a parte administrativa, a senha padrão de acesso para eles é `111`.
 
 ---
 
