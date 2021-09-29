@@ -96,7 +96,7 @@ Todos os usuários criados no `seed.js` são administrativos, então todos tem a
 
 ---
 
-Desenvolvido por [Jean Fernandes de Macedo](https://github.com/JFMcacedo)
+Desenvolvido por [Jean Fernandes de Macedo](https://github.com/jfmcacedo91)
 
 [![Linkedin Badge](https://img.shields.io/badge/-Jean%20Fernandes%20de%20Macedo-0077B5?style=plastic&logo=Linkedin&link=https://www.linkedin.com/in/jean-fernandes-de-macedo-b843a3194/)](https://www.linkedin.com/in/jean-fernandes-de-macedo-b843a3194/) 
 [![Gmail Badge](https://img.shields.io/badge/-jfmacedo91@gmail.com-c14438?style=plastic&logo=Gmail&logoColor=white&link=mailto:jfmacedo91@gmail.com)](mailto:jfmacedo91@gmail.com)
