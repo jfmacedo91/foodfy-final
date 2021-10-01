@@ -3,11 +3,11 @@
 </h1>
 
 <p align="center">
-	<img alt="Author" src="https://img.shields.io/badge/Author-Jean%20Fernandes%20de%20Macedo-6558c3?style=plastic" />
-	<img alt="License" src="https://img.shields.io/badge/license-MIT-6558C3?style=plastic" />
-	<img alt="GitHub Language Count" src="https://img.shields.io/github/languages/count/JFMacedo/foodfy-final?color=6558C3&style=plastic" />
-	<img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/JFMacedo/foodfy-final?color=6558C3&style=plastic" />
-	<img alt="License" src="https://img.shields.io/badge/status-Conclu%C3%ADdo-6558C3?style=plastic" />
+	<img alt="Author" src="https://img.shields.io/badge/Author-Jean%20Fernandes%20de%20Macedo-6558c3" />
+	<img alt="License" src="https://img.shields.io/badge/license-MIT-6558C3" />
+	<img alt="GitHub Language Count" src="https://img.shields.io/github/languages/count/jfmacedo91/foodfy-final?color=6558C3" />
+	<img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/jfmacedo91/foodfy-final?color=6558C3" />
+	<img alt="License" src="https://img.shields.io/badge/status-Conclu%C3%ADdo-6558C3" />
 </p>
 
 <div align="center">
